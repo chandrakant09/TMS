@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<listener>
+		<listener-class>com.lei.utility.serverstart.ServerStartupContextListener</listener-class>
+	</listener>
+
+	<filter>
+		<filter-name>CorsFilter</filter-name>
+		<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+		<init-param>
+			<param-name>cors.allowed.origins</param-name>
+			<param-value>*</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.allowed.methods</param-name>
+			<param-value>GET,POST,HEAD,OPTIONS,PUT</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.allowed.headers</param-name>
+			<param-value>Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.exposed.headers</param-name>
+			<param-value>Access-Control-Allow-Origin,Access-Control-Allow-Credentials</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.support.credentials</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.preflight.maxage</param-name>
+			<param-value>10</param-value>
+		</init-param>
+	</filter>
+
+	<filter>
+		<filter-name>headerSetterFilter</filter-name>
+		<filter-class>
+			com.lei.filters.HeaderSetterFilter
+		</filter-class>
+	</filter>
+	
+	<filter>
+		<filter-name>authenticationFilter</filter-name>
+        <filter-class>
+            com.lei.filters.AuthenticationFilter
+        </filter-class>
+    </filter>
+	
+	<!-- <filter>
+		<filter-name>captchaValidationFilter</filter-name>
+		<filter-class>
+			com.lei.filters.CaptchaValidationFilter
+		</filter-class>
+	</filter> -->
+	
+	
+	<filter-mapping>
+		<filter-name>CorsFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>headerSetterFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+    <!-- <filter-mapping>
+		<filter-name>authenticationFilter</filter-name>
+        <url-pattern>/sec/*</url-pattern>
+    </filter-mapping> -->
+	<!-- <filter-mapping>
+		<filter-name>captchaValidationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
+
+	<absolute-ordering>
+	  <name>CorsFilter</name>
+	  <name>headerSetterFilter</name>
+	  <name>authenticationFilter</name>
+	  <name>captchaValidationFilter</name>
+	</absolute-ordering>
+
+	<display-name>TMS</display-name>
+
+	<servlet>
+		<servlet-name>restapiforleiportal</servlet-name>
+		<servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>restapiforleiportal</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	
+	<!-- <servlet-mapping>
+   	  <servlet-name>secureWeb</servlet-name>
+      <url-pattern>/secure</url-pattern>
+   </servlet-mapping> -->
+   
+   
+     <listener>    
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>    
+    </listener>    
+     <context-param>    
+        <param-name>contextConfigLocation</param-name>    
+        <param-value>    
+            /WEB-INF/restapiforleiportal-servlet.xml    
+        </param-value>    
+    
+    </context-param>    
+    
+    <!-- Spring Security -->  
+  
+	<filter>  
+	  <filter-name>springSecurityFilterChain</filter-name>  
+	  <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>  
+	 </filter>  
+	  
+	 <filter-mapping>  
+	  <filter-name>springSecurityFilterChain</filter-name>  
+	  <url-pattern>/*</url-pattern>  
+	 </filter-mapping>  
+
+	<welcome-file-list>
+		<!-- <welcome-file>index_home.html</welcome-file> -->
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+</web-app>

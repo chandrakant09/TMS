@@ -1,0 +1,100 @@
+<div class="col-md-12 col-sm-12 col-xs-12 mrt10"
+	ng-controller="pendingRechargeCtrl">
+
+	<div class="boxContaner">
+	
+		<h4>
+			Pending Process...<small></small>
+		</h4>
+		<div class="formContent" ng-if="rechargeList">
+			<table class="producttable">
+				<tr>
+					<td>S.No.</td>
+					<td>Transaction ID</td>
+					<td>E Distric ID</td>
+					<td>User Name</td>
+					<td>Email</td>
+					<td>Amount</td>
+					<td>Status</td>
+					<td>Transaction Date</td>
+				</tr>
+				<tr ng-repeat="obj in rechargeList">
+					<td>{{$index+1}}</td>
+					<td>{{obj.TransactionId}}</td>
+					<td>{{getEDisttID(obj.UserId)}}</td>
+					<td ng-click="updateTrasactionStatus(obj)">{{getUserName(obj.UserId)}}</td>
+					<td>{{getEmailId(obj.UserId)}}</td>
+					<td>{{obj.Amount}}</td>
+					<td>{{obj.Status}}</td>
+					<td>{{obj.Updated | date: 'dd-MM-yyyy HH:mm'}}</td>
+
+				</tr>
+
+			</table>
+		</div>
+	</div>
+
+	<div class="UpdateDIV1" id="UpdateDIV" style="display:none">
+		<div class="boxContaner">
+			<a class="close hideBox" href="" ng-click="hideTrasactionStatus()"><i class="fa fa-times"></i></a>
+		 	 <h4>Update Transaction Status<small></small></h4>
+		 	
+		 	 <table class="producttable">
+				
+				<tr>
+					<td>Transaction Id</td>
+					<td>{{recharge.TransactionId}}</td>
+				</tr>
+
+				<tr>
+					<td>User Name</td>
+					<td>{{getUserName(recharge.UserId)}}</td>
+				</tr>
+				
+				<tr>
+					<td>E Distric ID</td>
+					<td>{{getEDisttID(recharge.UserId)}}</td>
+				</tr>
+
+				<tr>
+					<td>Amount</td>
+					<td>{{recharge.Amount}}</td>
+				</tr>
+				
+				<tr>
+					<td>Last Balance</td>
+					<td>{{recharge.LastBalance}}</td>
+				</tr>
+
+				<tr>
+					<td>Status</td>
+					<td>{{recharge.Status}}</td>
+				</tr>
+				<tr>
+					<td>Updated</td>
+					<td>{{recharge.Updated | date: 'dd-MM-yyyy HH:mm'}}</td>
+				</tr>
+
+			
+
+			</table>
+			
+			
+         	<div class="cls"></div>
+         	 <div>
+				 <div class="{{msgtype}}" ><img src="{{msgimg}}"/> {{msg}}</div>
+			 </div>
+         	
+         	 <div class="buttonholder" ><input type="button" ng-click="updateTrasaction('FAILED')"
+						value="Failed" class="btn btn-danger" ng-disabled="isSubmit" />
+						<input type="button" ng-click="updateTrasaction('SUCCESS')"
+						value="Success" class="btn btn-success" ng-disabled="isSubmit" /></div>
+          	
+       
+			
+			
+			
+		</div>
+	</div>
+</div>
+

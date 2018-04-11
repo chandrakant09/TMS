@@ -1,0 +1,119 @@
+<div class="col-md-12 col-sm-12 col-xs-12 mrt10" ng-controller="userInfoCtrl">
+       <div class="boxContaner">
+		<h4>
+			User Registration Detail<small></small>
+		</h4>
+		<div class="form-group">
+                      <label ng-click="check();" class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Select Agent<span class="required">*</span>
+                      </label>
+                     
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="tags" ng-keyup="complete()" type="text" class="form-control col-md-7 col-xs-12" placeholder="please enter user Details" ng-model="user.UserId"  required/>
+            		  </div>
+            		  
+            		  <input type="button" value="Search" ng-click="fetchUser()" class="btn btn-primary">
+                </div>
+                
+               
+           <div class="formContent">
+        <hr/>
+        	<div ng-if="report">
+				<uib-tabset active="activeJustified" Justified="true">
+				 
+                 <uib-tab index="0" heading="User Details">
+				 <table class="producttable">
+						
+						    <tr>
+						   		 <td colspan="4"></td>
+								 
+							</tr>
+						
+						    <tr>
+						   		 <td>EDisttId</td><td>{{report.User.EdisttId}}</td>
+								 <td>Name </td><td>{{report.User.FirstName}} {{report.User.LastName}}</td>
+							</tr>
+							<tr>
+						   		<td>Mobile Number </td><td>{{report.User.Mobile}}</td>
+							<td>Email Id </td><td>{{report.User.Email}}</td>
+							</tr>
+							
+							<tr>
+						   		<td>District </td><td>{{report.User.Distt}}</td>
+								<td>Block</td><td>{{report.User.Block}}</td>
+							</tr>
+							
+							<tr>
+						   		<td>Village</td><td>{{report.User.Village}}</td>
+							    <td>Address </td><td>{{report.User.Address}}</td>
+							</tr>
+							
+							<tr>
+						   		<td>Post</td><td>{{report.User.Post}}</td>
+							    <td>WardNo </td><td>{{report.User.WardNo}}</td>
+							</tr>
+							
+							<tr>
+						   		<td>Street</td><td>{{report.User.Street}}</td>
+							    <td>Tehsil </td><td>{{report.User.Tehsil}}</td>
+							</tr>
+							
+							<tr>
+						   		<td>Role Id</td><td>{{report.User.UserRole.RoleId}}</td>
+							    <td>Password </td><td>{{report.User.Status.Password}}</td>
+							</tr>
+							
+						
+						 
+					</table>
+				
+                 </uib-tab> 
+				
+				<uib-tab index="1" heading="Wallet Recharge">
+				    <table class="producttable">
+						<tr>
+							<td>Recharge Amount</td>
+							<td>DebitAmount </td>
+							<td>Balance </td>
+							
+						</tr>
+						<tr >
+							<td>{{(report.RechargeAmount).toFixed(2)}}</td>
+							<td>{{(report.DebitAmount).toFixed(2)}}</td>
+							<td>{{(report.RechargeAmount-report.DebitAmount).toFixed(2)}}</td>
+						</tr>
+						 
+					</table>
+				
+				
+				</uib-tab> 
+				
+				
+				<uib-tab index="2" heading="E-district Trasaction">
+				 <table class="producttable">
+						<tr>
+							<td>District</td>
+							<td>Transaction</td>
+							<td>No of Application</td>
+							<td>Earning</td>
+							</tr>
+						<tr>
+							<td>{{report.User.Distt}}</td>
+							<td>{{(report.DebitAmount).toFixed(2)}}</td>
+							<td>{{report.DebitAmount/20}}</td>
+							<td>{{((report.DebitAmount*2.40)/20).toFixed(2)}}</td>
+						</tr>
+						
+					</table>	
+				
+				</uib-tab>
+				
+				</uib-tabset>
+		     
+			</div>
+
+			<br/>
+          </div>
+         </div>
+       </div>
+    
+            

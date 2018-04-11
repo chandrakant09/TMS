@@ -1,0 +1,39 @@
+ <div class="loginBox" id="loginDiv"  ng-controller="homeController">
+       <a class="close" href="" ng-click="loginBoxHide()"><img src="app/images/close.png"/></a>
+    	<div class="fieldWrapper">
+       
+        <h4>Login</h4>
+        <form  name="loginForm" novalidate ng-submit="loginForm.$valid && login.authenticateUser(loginForm)">
+         
+          <div class="form-group has-feedback has-feedback-left">
+            <input type="email" class="form-control" placeholder="Please enter your email Id" ng-model="user.Email" name="email" required/>
+            <i class="form-control-feedback glyphicon glyphicon-envelope  has-feedback-left" ></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="loginForm.email.$touched && loginForm.email.$valid"></span>
+           
+         	  <div class="text-danger paddingTB0" ng-messages="loginForm.email.$error "  ng-if="loginForm.email.$touched || loginForm.$submitted">
+          		 <div ng-messages-include="views/messages.html"></div>
+             </div>
+          </div>
+          
+           <div class="form-group has-feedback has-feedback-left">
+            <input type="password" class="form-control" placeholder="Please enter your password" ng-model="user.Status.Password" minlength="6" name="password" required/>
+            <i class="form-control-feedback glyphicon glyphicon-lock  has-feedback-left"></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="loginForm.email.$touched && loginForm.password.$valid"></span>
+            <div class="text-danger paddingTB0" ng-messages="loginForm.password.$error"  ng-if="loginForm.password.$touched || loginForm.$submitted" >
+          		  <div ng-messages-include="views/messages.html"></div>
+            </div>
+          </div>
+          
+          <div><a href="#" class="fr" ng-click="forgetPasswordDisplay()">Forgot Password</a></div>
+         	<div class="cls"></div>
+         	 <div>
+				 <div class="{{msgtype}}" ><img src="{{msgimg}}"/> {{msg}}</div>
+			 </div>
+         	
+         	<!-- <div class="buttonholder" ><input type="submit" class="btn loginButton"  value="Login" ng-click="authenticateUser(!)" class="btn loginButton loginClick"   /></div> -->
+          	 <div class="buttonholder" ><input type="submit" class="btn loginButton" name="submit" value="Login"  class="btn loginButton loginClick"  /></div>
+          	<!--  <div class="buttonholder" ><input type="button" class="btn loginButton" name="submit"  value="Forget Password"  class="btn loginButton loginClick"  /></div> --> 
+		  
+        </form>
+       
+</div>              
+ </div>
+

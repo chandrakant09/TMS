@@ -1,0 +1,49 @@
+<div class="col-md-12 col-sm-12 col-xs-12 mrt10">
+              <div class="boxContaner">
+                <h4>EDistrict Report<small></small></h4>
+                <div class="formContent" ng-controller="edisttCtrl">
+                
+                   <br />
+               
+                          
+                     <div class="form-group">
+                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Enter VLE ID
+                      </label>
+                      
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="tags" ng-keyup="complete()" required ng-model="reportFilter.G2cId" class="form-control col-md-7 col-xs-12">
+                      </div>
+                      
+                       <input type="Button" ng-click="getEDistricReport()" value="Fetch Data" class="btn btn-primary">
+                    </div>
+                 
+              
+                <small></small>
+                <br><br><br>
+                  <button ng-click="exportData()">Export Data</button> 
+                  
+                  <div  class="formContent"  id="exportable" ng-if="edisttList">
+                 <table class="producttable">
+						<tr>
+							
+							<td>S.No.</td>
+							<td>Application Id</td>
+							<!-- <td>Amount</td> -->
+							<td>Status</td>
+							<td>Transaction Id</td>
+						</tr>
+						<tr ng-repeat="obj in edisttList">
+							
+							<td>{{$index+1}}</td>
+							<td>{{obj.applicationNo}}</td>
+							<!-- <td>{{obj.Amount}}</td> -->
+							<td>{{obj.transstatus}}</td>
+							<td>{{obj.trnid}}</td>
+						</tr>
+						
+					</table>
+					</div>
+                </div>
+              </div>
+            </div>
+    

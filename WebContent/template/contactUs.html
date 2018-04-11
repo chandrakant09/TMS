@@ -1,0 +1,103 @@
+ <div class="signup-box" style="display:none" id="contactDiv" ng-controller="contactUsBoxCtrl">
+		<span class="pull-right"  ng-click="closeBox()"><img alt="close" src="app/images/close.png" style="cursor: pointer;"> </span>
+			<div class="text-center"><h3>Contact Us</h3></div>
+        	<div class="fieldWrapper">
+        	<form role="form" name="contactUsForm" novalidate ng-submit="contactUsForm.$valid && saveContact(contactUsForm.$valid)">
+		                 	 <div class="col-md-6 col-sm-6 col-xs-12 ">
+		                      <div class="form-group">
+							  				<input type="text" class="form-control"
+													placeholder="please enter your First Name*"
+													ng-model="user.FirstName" name="userFirstName"
+													ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="2"
+													ng-maxlength="30" required />
+												<span class="glyphicon glyphicon-ok form-control-feedback"
+													ng-show="contactUsForm.userFirstName.$touched && contactUsForm.userFirstName.$valid"></span>
+
+												<div class="text-danger paddingTB0"
+													ng-messages="contactUsForm.userFirstName.$error"
+													ng-if="contactUsForm.userFirstName.$touched || contactUsForm.$submitted">
+													<div ng-message="required">First Name is required.</div>
+													<div ng-message="minlength">First Name is too short.</div>
+													<div ng-message="maxlength">First Name can be 30 characters
+														long.</div>
+													<div ng-message="pattern">Must contain letters/spaces.</div>
+
+												</div>
+							  
+							  
+							  </div>
+		                    </div>
+							
+							 <div class="col-md-6 col-sm-6 col-xs-12 ">
+		                      <div class="form-group">
+							  
+												<input type="text" class="form-control"	placeholder="please enter your Last Name*" ng-model="user.LastName"
+													name="userLastName" ng-pattern="/^[a-zA-Z\s]+$/"
+													ng-minlength="2" ng-maxlength="30" required />
+												<span class="glyphicon glyphicon-ok form-control-feedback"
+													ng-show="contactUsForm.userLastName.$touched && contactUsForm.userLastName.$valid"></span>
+													
+												<div class="text-danger paddingTB0"
+													ng-messages="contactUsForm.userLastName.$error"
+													ng-if="contactUsForm.userLastName.$touched || contactUsForm.$submitted">
+													<div ng-message="required">Last Name is required.</div>
+													<div ng-message="minlength">Last Name is too short.</div>
+													<div ng-message="maxlength">Last Name can be 30 characters
+														long.</div>
+													<div ng-message="pattern">Must contain letters/spaces.</div>
+
+												</div>
+							  
+							  
+							  </div>
+							  
+		                    </div>
+							
+							 <div class="col-md-12 col-sm-12 col-xs-12 ">
+		                      <div class="form-group">
+							  
+												<input type="email" class="form-control"
+													placeholder="please enter your Email Id*" ng-model="user.Email"
+													name="userEmail" required  ng-focus="clearMsg();" /> 
+												<span class="glyphicon glyphicon-ok form-control-feedback"
+													ng-show="contactUsForm.userEmail.$touched && contactUsForm.userEmail.$valid"></span>
+												<div class="text-danger paddingTB0"
+													ng-messages="contactUsForm.userEmail.$error"
+													ng-if="contactUsForm.userEmail.$touched || contactUsForm.$submitted">
+													<div ng-message="required">Email Id is required.</div>
+													<div ng-message="email">Email Id is not Valid.</div>
+												</div>							  
+							  
+							  </div>
+							  
+		                    </div>
+							
+							<div class="col-md-12 col-sm-12 col-xs-12 ">
+		                      <div class="form-group">
+							 	 <textarea class="form-control" rows="5" cols="" placeholder="please enter your message *" ng-model="user.message"
+							  name="userMessage" ng-minlength="10" ng-maxlength="500" required></textarea>
+												<span class="glyphicon glyphicon-ok form-control-feedback"
+													ng-show="contactUsForm.userMessage.$touched && contactUsForm.userMessage.$valid"></span>
+												<div class="text-danger paddingTB0"
+													ng-messages="contactUsForm.userMessage.$error"
+													ng-if="contactUsForm.userMessage.$touched || contactUsForm.$submitted">
+													<div ng-message="required">Message is required.</div>
+													<div ng-message="minlength">Must be a between 10-500 char message.</div>
+												</div>							  
+							  
+							  </div>
+							  
+		                    </div>
+		                      <div class="{{msgtype}}" ><img src="{{msgimg}}"/> {{msg}}</div>
+		                    
+			                    <div class="form-group">
+			                      <div class="text-center">
+			                      	<button type="submit" class="btn btn-success"  ng-disabled="isSubmitted" >
+			                      	<i class="fa fa-location-arrow"></i> <span style="padding-left: 2px">Send</span>
+			                      	</button>
+			                      </div>
+			                    </div>
+                   			</form>
+        
+        </div>
+    </div>

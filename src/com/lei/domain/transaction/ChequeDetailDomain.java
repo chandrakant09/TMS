@@ -1,0 +1,93 @@
+package com.lei.domain.transaction;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Table(name = "chequedetail")
+public class ChequeDetailDomain {
+	@Getter
+	@Setter
+	@Id
+	@Column(name="chequeid")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	
+	private long chequeId;
+	
+	@Getter
+	@Setter
+	@Column(name="chequeno")
+	private long chequeNo;
+	
+	@Getter
+	@Setter
+	@Column(name="transactionid")
+	private long transactionId;
+	
+	@Getter
+	@Setter
+	@Column(name="chequedate")
+	private Date chequeDate;
+	
+	@Getter
+	@Setter
+	@Column(name="bankname")
+	private String bankName;
+	
+	@Getter
+	@Setter
+	@Column(name="ifsc")
+	private String ifsc;
+	
+	@Getter
+	@Setter
+	@Column(name="location")
+	private String location;
+	
+	@Getter
+	@Setter
+	@Column(name="dateofdepositecheque")
+	private Date dateOfDepositeCheque;
+	
+	@Getter
+	@Setter
+	@Column(name="fileid")
+	private int fileId;
+	
+	@Getter
+	@Setter
+	@Column(name="userid")
+	private long userId;
+	
+	@Getter
+	@Setter
+	@Column(name="feveroff")
+	private String feveroff;
+	
+	@Getter
+	@Setter
+	@Column(name="rechargeBy")
+	private int rechargeBy;
+	
+	
+	@Getter
+	@Setter
+	@Column(name="status")
+	private String status;
+	
+	@Getter
+	@Setter
+	@Column(name = "amount")
+	private double amount;
+	
+	
+	}

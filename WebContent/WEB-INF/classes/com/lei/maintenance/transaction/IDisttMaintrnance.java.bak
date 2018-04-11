@@ -1,0 +1,17 @@
+package com.lei.maintenance.transaction;
+
+import com.lei.dto.wallet.EdisttDTO;
+import com.lei.dto.wallet.PaidServiceDTO;
+import com.lei.exception.common.ObjectNotSupportedException;
+import com.lei.exception.common.ProcessFailedException;
+
+public interface IDisttMaintrnance {
+	EdisttDTO edistrictRequestProcess(EdisttDTO edisttDTO) throws ObjectNotSupportedException, ProcessFailedException;
+	
+	EdisttDTO edistrictRequestSaved(EdisttDTO edisttDTO) throws ObjectNotSupportedException, ProcessFailedException;
+
+	PaidServiceDTO getServiceDTO(String serviceId)throws ObjectNotSupportedException, ProcessFailedException;
+
+	boolean isExist(EdisttDTO edisttDTO) throws ObjectNotSupportedException,
+			ProcessFailedException;
+}

@@ -1,0 +1,104 @@
+<div class="col-lg-12 pad0 pannelWrapper" ng-controller="edmReport">
+      <div class="contanerWrapper" >
+            <!--top pannel-->
+	          
+	           		<label class="control-label col-md-3 col-sm-3 col-xs-12" >Start Date<span class="required">*</span>
+                    </label>
+                         <div class="col-md-6" ng-controller="DatepickerCtrl" >
+					        <p class="input-group"> 
+					          <input type="text" name="startDate"  id="startDate" class="form-control" uib-datepicker-popup="{{format}}" ng-model="StartDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+					          <span class="input-group-btn">
+					            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+					          </span>
+					        </p>
+					    </div>
+                        <br/><br/><br/>
+                   
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" >End Date<span class="required">*</span>
+                      </label>
+	                   <div class="col-md-6" ng-controller="DatepickerCtrl">
+				        <p class="input-group"> 
+				          <input type="text" name="endDate" id="endDate" class="form-control" uib-datepicker-popup="{{format}}" ng-model="EndDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+				          <span class="input-group-btn">
+				            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+				          </span>
+				        </p>
+				      </div>
+              
+                <br/><br/><br/>
+                  <small></small>
+                  <input type="Button" ng-click="getrechargeHisList()" value="Fetch Data" class="btn btn-primary">
+                  <small></small>
+                <!--top pannel-->
+	       	<!--user pannel Start-->
+            <h4>Report (Live)<small></small></h4>
+			<button ng-click="exportData()">Export Data</button>
+			<div class="formContent" id="exportable">
+			    
+			      <uib-tabset active="activeJustified" Justified="true"> 
+					 
+					  <uib-tab index="0" heading="Total CSC Registration">
+						<table class="producttable">
+							<tr>
+								<td rowspan="3">District</td>
+								<td rowspan="3">Total</td>
+								<td colspan="4">Total CSC</td>
+			
+							</tr>
+							<tr>
+								
+								<td  class="mtxt" colspan="2">New CSC</td>
+								<td  class="mtxt" colspan="2">Old CSC</td>
+			
+							</tr>
+							<tr>
+							  
+								<td  class="mtxt">Rural</td>
+								<td  class="mtxt">Urban</td>
+								<td  class="mtxt">Rural</td>
+								<td  class="mtxt">Urban</td>
+							</tr>
+							
+							<tr ng-repeat="x in eReport">
+						        <td>{{x.name}}</td>
+								<td>{{x.nRural+x.nUrban+x.oRural+x.oUrban}}</td>
+								<td>{{x.nRural}}</td>
+								<td>{{x.nUrban}}</td>
+								<td>{{x.oRural}}</td>
+								<td>{{x.oUrban}}</td>
+							</tr>
+						 </table>
+						</uib-tab>
+			
+						 <uib-tab index="1" heading="Active VLE">
+			    		  <table class="producttable">
+							<tr>
+								<td>District</td>
+								<td>Active VLE</td>
+							</tr>
+							<tr ng-repeat="x in eReport">
+								<td>{{x.name}}</td>
+								<td>{{x.activeVle}}</td>
+							</tr>
+			  			 </table>
+						</uib-tab>
+						
+						<uib-tab index="2" heading="E-district Trasaction ">
+						 <table class="producttable">
+							<tr>
+								<td>District</td>
+								<td>Transaction</td>
+								<td>No of Application</td>
+							</tr>
+							<tr ng-repeat="x in eReport">
+								<td>{{x.name}}</td>
+								<td>{{x.transaction}}</td>
+								<td>{{x.transaction/20}}</td>
+							</tr>
+			    		  </table>
+			
+						</uib-tab>
+						</uib-tabset>
+			</div>
+		   </div>
+       	</div>

@@ -1,0 +1,121 @@
+package com.lei.dao.transaction;
+
+import java.util.Date;
+import java.util.List;
+
+import com.lei.dto.master.ReportFilter;
+import com.lei.dto.wallet.CashDTO;
+import com.lei.dto.wallet.ChequeDTO;
+import com.lei.dto.wallet.DemandDraftDTO;
+import com.lei.dto.wallet.EdisttDTO;
+import com.lei.dto.wallet.PaidServiceDTO;
+import com.lei.dto.wallet.RechargeDTO;
+import com.lei.dto.wallet.TransactionDTO;
+import com.lei.dto.wallet.TransactionUpdateDTO;
+import com.lei.dto.wallet.WalletDTO;
+import com.lei.exception.common.ObjectNotSupportedException;
+import com.lei.exception.common.ProcessFailedException;
+
+public interface ITransactionDao {
+	
+	public WalletDTO getUserWallet(long walletId) throws ObjectNotSupportedException ;
+	
+	public WalletDTO getUserWalletByUserId(long userId) throws  ObjectNotSupportedException;
+	
+	public WalletDTO getRechargeAmount(long rechargeId) throws  ObjectNotSupportedException;
+	
+	public TransactionDTO getTrasaction(long transactionId) throws  ObjectNotSupportedException;
+	
+	public boolean updateUserWallet(WalletDTO  walletDTO) throws ProcessFailedException, ObjectNotSupportedException;
+	
+	public boolean updateTransactionDetail(TransactionDTO transactionDTO) throws ProcessFailedException , ObjectNotSupportedException;
+	
+	public boolean updateRechargeWallet(RechargeDTO rechargeDTO) throws ProcessFailedException, ObjectNotSupportedException;
+	
+	public long walletRechargeProcess(RechargeDTO rechargeDTO)throws ProcessFailedException,ObjectNotSupportedException;
+	
+	List<WalletDTO> getUsersWallet(ReportFilter filter)	throws ObjectNotSupportedException;
+	
+    public ChequeDTO getChequeDetail(long chequeId) throws ObjectNotSupportedException;
+	
+	public boolean updateChequeDetail(ChequeDTO chequeDTO) throws ProcessFailedException, ObjectNotSupportedException;
+	
+	public List<ChequeDTO> getChequeDetailByUserId(long userId) throws  ObjectNotSupportedException;
+	
+	public List<CashDTO> getCashDetails(ReportFilter reportFilter) throws ObjectNotSupportedException ;
+	
+	List<DemandDraftDTO> getDemandDraftDetails(ReportFilter reportFilter) throws ObjectNotSupportedException;
+	
+	public List<ChequeDTO> getChequeDetails() throws  ObjectNotSupportedException;
+	
+    
+	List getRechargeHist(ReportFilter filter)throws ObjectNotSupportedException;
+	
+	public boolean updateCashDetails(CashDTO cashDTO) throws ProcessFailedException, ObjectNotSupportedException;
+	
+		
+	public boolean updateDemandDraftDetails(DemandDraftDTO demandDraftDTO) throws ProcessFailedException, ObjectNotSupportedException;
+
+
+
+	double transactionSuccess(long transactionId)throws ProcessFailedException, ObjectNotSupportedException;
+
+	boolean transactionFailure(long transactionId)throws ProcessFailedException, ObjectNotSupportedException;
+
+	double getDailyCashAmount(String status) throws ObjectNotSupportedException;
+
+	double getCashAmount(String status) throws ObjectNotSupportedException;
+
+	double getDailyChequeAmount(String status)	throws ObjectNotSupportedException;
+
+	double getDailyTransactionAmount(String status)	throws ObjectNotSupportedException;
+
+	
+	double getDailyCollectionAmount(String status, Date updated) throws ObjectNotSupportedException;
+
+	long amountDeductionProcess(long userId, double amount)	throws ProcessFailedException;
+
+	PaidServiceDTO getDeductionAmount(String serviceId)throws ObjectNotSupportedException;
+
+	double getChequeAmount(String status, long userId)throws ObjectNotSupportedException;
+
+	double getCollectionAmount(String status, long userId)throws ObjectNotSupportedException;
+
+	/*double getTransactionAmount(String status, long userId)throws ObjectNotSupportedException;*/
+
+	EdisttDTO isExist(EdisttDTO edisttDTO) throws ObjectNotSupportedException;
+
+	boolean saveTransactionStatusUpdate(TransactionUpdateDTO transactionUpdateDTO)throws ProcessFailedException, ObjectNotSupportedException;
+
+	double getTransactionAmount(ReportFilter reportFilter)	throws ObjectNotSupportedException;
+
+	double getCollectionAmount(ReportFilter reportFilter)throws ObjectNotSupportedException;
+
+	double getChequeAmount(ReportFilter reportFilter) throws ObjectNotSupportedException;
+
+	List<TransactionDTO> getTransactionsHist(ReportFilter filter)	throws ObjectNotSupportedException;
+
+	double getDDCollection(ReportFilter reportFilter) throws ObjectNotSupportedException;
+
+	double getCashCollection(ReportFilter reportFilter)	throws ObjectNotSupportedException;
+
+
+	List<CashDTO> getCashDetailstList(ReportFilter filter)throws ObjectNotSupportedException;
+
+	List getEdistWorkStatus(ReportFilter filter) throws ObjectNotSupportedException;
+
+	
+	double getTodayTransaction(ReportFilter filter) throws ObjectNotSupportedException;
+
+	double getTransactionAmount(String status, String transactionType,long userId) throws ObjectNotSupportedException;
+
+	public long getActiveUser(String distt) throws ObjectNotSupportedException;
+
+	public List getDisttAmount(ReportFilter reportFilter)	throws  Exception;
+
+	List<RechargeDTO> getRechargeList(ReportFilter filter)		throws ObjectNotSupportedException;
+
+	public List getwalletAmount(ReportFilter reportFilter) throws ObjectNotSupportedException;
+	
+
+}

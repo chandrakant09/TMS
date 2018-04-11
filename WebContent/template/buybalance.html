@@ -1,0 +1,52 @@
+<div class="col-md-12 col-sm-12 col-xs-12 mrt10">
+              <div class="boxContaner">
+                <h4>Buy Balance<small></small></h4>
+                <div class="formContent" ng-controller="balanceCtrl">
+                  <br />
+                  <form name="paymentForm" class="form-horizontal" action="transactionmaintenance/walletrecharge" method="post">
+
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >Email Id <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="emailId" name="emailId" ng-model="user.Email" required class="form-control col-md-7 col-xs-12" readonly="true">
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >Amount <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="number" id="amount" name="amount" required class="form-control col-md-7 col-xs-12" ng-model="transactionAmount">
+                        <i
+						class="form-control-feedback glyphicon has-feedback-left"></i>
+						<span class="glyphicon glyphicon-ok form-control-feedback"
+							ng-show="paymentForm.amount.$touched && paymentForm.amount.$valid"></span>
+
+						<div class="text-danger paddingTB0"
+							ng-messages="paymentForm.amount.$error"
+							ng-if="paymentForm.amount.$touched || paymentForm.$submitted">
+							<div ng-messages-include="views/messages.html"></div>
+						</div>
+                      </div>
+                    </div>
+                    
+                    <div class="note">
+                    Note: we will charege extra 2% for online transaction
+                    </div>
+                    
+                    
+                    
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="reset" class="btn btn-primary">Cancel</button>
+                        <button type="submit" class="btn btn-success" ng-disabled="!paymentForm.amount.$valid">Submit</button>
+                      </div>
+                    </div>
+				 </form>
+                </div>
+              </div>
+            </div>
+    
+    </div>

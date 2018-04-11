@@ -1,0 +1,80 @@
+
+<div class="col-lg-12 pad0 pannelWrapper" ng-controller="edmReport">
+      <div class="boxContaner" >
+            <h4>
+		     	District Transaction Report<small></small>
+		     </h4> 
+	           		<label class="control-label col-md-3 col-sm-3 col-xs-12" >Start Date<span class="required">*</span>
+                    </label>
+                         <div class="col-md-6" ng-controller="DatepickerCtrl" >
+					        <p class="input-group"> 
+					          <input type="text" name="startDate"  id="startDate" class="form-control" uib-datepicker-popup="{{format}}" ng-model="StartDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+					          <span class="input-group-btn">
+					            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+					          </span>
+					        </p>
+					    </div>
+                        <br/><br/><br/>
+                   
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" >End Date<span class="required">*</span>
+                      </label>
+	                   <div class="col-md-6" ng-controller="DatepickerCtrl">
+				        <p class="input-group"> 
+				          <input type="text" name="endDate" id="endDate" class="form-control" uib-datepicker-popup="{{format}}" ng-model="EndDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+				          <span class="input-group-btn">
+				            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+				          </span>
+				        </p>
+				      </div>
+              
+
+                  <small></small>
+                  <input type="Button" ng-click="getData()" value="Fetch Data" class="btn btn-primary">
+                  <small></small>
+                <hr/>
+                <!--top pannel-->
+	       	<!--user pannel Start-->
+          
+			<div class="formContent" ng-if="eReport || wReport">
+			    
+			      <uib-tabset active="activeJustified" Justified="true"> 
+					 
+					<uib-tab index="1" heading="E-district Trasaction ">
+						<table class="producttable">
+							<tr>
+								<td>District</td>
+								<td>Transaction</td>
+								<td>No of Application</td>
+                                <td>VLE Commission</td>
+								<td>DSP Commission</td>
+								<td>All Commission</td>
+							</tr>
+							<tr ng-repeat="x in eReport">
+								<td>{{x[0]}}</td>
+								<td><i class="fa fa-inr"></i>{{x[1]}}</td>
+								<td>{{x[1]/20}}</td>
+                                <td><i class="fa fa-inr"></i>{{((x[1]/20)*2.40).toFixed(2)}}</td>
+                                <td><i class="fa fa-inr"></i>{{((x[1]/20)*3.60).toFixed(2)}}</td>
+                                <td><i class="fa fa-inr"></i>{{((x[1]/20)*6).toFixed(2)}}</td>
+							</tr>
+			    		  </table>
+			
+						</uib-tab>
+						
+						 <uib-tab index="2" heading="Wallet Recharge">
+						<table class="producttable">
+							<tr>
+								<td>District</td>
+								<td>Wallet Recharge</td>
+							</tr>
+							<tr ng-repeat="x in wReport">
+								<td>{{x[0]}}</td>
+								<td>{{(x[1]).toFixed(2)}}</td>
+							</tr>
+						</table>
+				    </uib-tab>
+				</uib-tabset>
+			</div>
+		   </div>
+		   	   
+</div>

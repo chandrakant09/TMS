@@ -1,0 +1,231 @@
+<div class="register" ng-controller="registerBoxCtrl">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+			<div class="x_titler">
+				<h2>Owner Registration</h2>
+			</div>
+			<div class="x_content">
+				<br />
+				<form id="demo-form2" data-parsley-validate
+					class="form-horizontal form-label-left" role="form"
+					name="registrationForm" novalidate
+					ng-submit="registrationForm.$valid && registerUser(registrationForm.$valid)">
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							for="first-name">First Name <span class="required">*</span>
+						</label>
+						<div class="col-md-9 col-sm-9 col-xs-12">
+							<input type="text" class="form-control"
+								placeholder="please enter your First Name*"
+								ng-model="user.FirstName" name="userFirstName"
+								ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="2" ng-maxlength="30"
+								required /> <i
+								class="form-control-feedback glyphicon glyphicon-user has-feedback-left"></i>
+							<span class="glyphicon glyphicon-ok form-control-feedback"
+								ng-show="registrationForm.userFirstName.$touched && registrationForm.userFirstName.$valid"></span>
+
+							<div class="text-danger paddingTB0"
+								ng-messages="registrationForm.userFirstName.$error"
+								ng-if="registrationForm.userFirstName.$touched || registrationForm.$submitted">
+								<div ng-message="required">First Name is required.</div>
+								<div ng-message="minlength">First Name is too short.</div>
+								<div ng-message="maxlength">First Name can be 30
+									characters long.</div>
+								<div ng-message="pattern">Must contain letters/spaces.</div>
+
+							</div>
+
+
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							for="first-name">Last Name <span class="required">*</span>
+						</label>
+						<div class="col-md-9 col-sm-9 col-xs-12">
+
+							<input type="text" class="form-control"
+								placeholder="please enter your Last Name*"
+								ng-model="user.LastName" name="userLastName"
+								ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="2" ng-maxlength="30"
+								required /> <i
+								class="form-control-feedback glyphicon glyphicon-user has-feedback-left"></i>
+							<span class="glyphicon glyphicon-ok form-control-feedback"
+								ng-show="registrationForm.userLastName.$touched && registrationForm.userLastName.$valid"></span>
+
+							<div class="text-danger paddingTB0"
+								ng-messages="registrationForm.userLastName.$error"
+								ng-if="registrationForm.userLastName.$touched || registrationForm.$submitted">
+								<div ng-message="required">Last Name is required.</div>
+								<div ng-message="minlength">Last Name is too short.</div>
+								<div ng-message="maxlength">Last Name can be 30 characters
+									long.</div>
+								<div ng-message="pattern">Must contain letters/spaces.</div>
+
+							</div>
+
+
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							for="first-name">Email <span class="required">*</span>
+						</label>
+						<div class="col-md-9 col-sm-9 col-xs-12">
+
+							<input type="email" class="form-control"
+								placeholder="please enter your Email Id*" ng-model="user.Email"
+								name="userEmail" required ng-focus="clearMsg();" /> <i
+								class="form-control-feedback glyphicon glyphicon-envelope has-feedback-left"></i>
+							<span class="glyphicon glyphicon-ok form-control-feedback"
+								ng-show="registrationForm.userEmail.$touched && registrationForm.userEmail.$valid"></span>
+							<div class="text-danger paddingTB0"
+								ng-messages="registrationForm.userEmail.$error"
+								ng-if="registrationForm.userEmail.$touched || registrationForm.$submitted">
+								<div ng-message="required">Email Id is required.</div>
+								<div ng-message="email">Email Id is not Valid.</div>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							for="first-name">Mobile <span class="required">*</span>
+						</label>
+						<div class="col-md-9 col-sm-9 col-xs-12">
+
+							<input type="text" class="form-control"
+								placeholder="please enter your Phone Number*"
+								ng-model="user.Mobile" name="userPhone"
+								ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
+								required /> <i
+								class="form-control-feedback glyphicon glyphicon-phone has-feedback-left"></i>
+							<span class="glyphicon glyphicon-ok form-control-feedback"
+								ng-show="registrationForm.userPhone.$touched && registrationForm.userPhone.$valid"></span>
+							<div class="text-danger paddingTB0"
+								ng-messages="registrationForm.userPhone.$error"
+								ng-if="registrationForm.userPhone.$touched || registrationForm.$submitted">
+								<div ng-message="required">Phone No is required.</div>
+								<div ng-message="pattern">Must be a valid 10 digit phone
+									no.</div>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							for="first-name">Full Address <span class="required">*</span>
+						</label>
+						<div class="col-md-9 col-sm-9 col-xs-12">
+
+							<input type="text" class="form-control"
+								placeholder="please enter your Address" ng-model="user.Address"
+								name="userAddress" required /> <i
+								class="form-control-feedback glyphicon glyphicon-user has-feedback-left"></i>
+							<span class="glyphicon glyphicon-ok form-control-feedback"
+								ng-show="registrationForm.userAddress.$touched && registrationForm.userAddress.$valid"></span>
+
+							<div class="text-danger paddingTB0"
+								ng-messages="registrationForm.userAddress.$error"
+								ng-if="registrationForm.userAddress.$touched || registrationForm.$submitted">
+								<div ng-message="required">Address is required.</div>
+							</div>
+
+
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							for="first-name">Select Type <span class="required">*</span>
+						</label>
+						<div class="col-md-9 col-sm-9 col-xs-12">
+							<select ng-model="user.OwnerType" class="form-control"
+								name="ownertype" required="required">
+								<option value="">Select type</option>
+								<option value="INDIVIDUAL">Individual</option>
+								<option value="COMPANY">Transport Company/Firm</option>
+							</select>
+						</div>
+					</div>
+
+
+					<div ng-show="user.OwnerType=='INDIVIDUAL'">
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12"
+								for="first-name">Enter Pan Card No. <span
+								class="required">*</span>
+							</label>
+							<div class="col-md-9 col-sm-9 col-xs-12">
+
+								<input type="text" class="form-control"
+									placeholder="please enter your Pan Card No.*"
+									ng-model="user.PanNo" name="panNo" /> <i
+									class="form-control-feedback glyphicon glyphicon-user has-feedback-left"></i>
+								<span class="glyphicon glyphicon-ok form-control-feedback"
+									ng-show="registrationForm.panNo.$touched && registrationForm.panNo.$valid"></span>
+
+								<div class="text-danger paddingTB0"
+									ng-messages="registrationForm.panNo.$error"
+									ng-if="registrationForm.panNo.$touched || registrationForm.$submitted">
+									<div ng-message="required">PanNo is required.</div>
+								</div>
+
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div ng-show="user.OwnerType=='COMPANY'">
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12"
+								for="first-name">Enter GSTN NO. <span class="required">*</span>
+							</label>
+							<div class="col-md-9 col-sm-9 col-xs-12">
+
+								<input type="text" class="form-control"
+									placeholder="Please Enter your GSTN NO.*" ng-model="user.GSTN"
+									name="uGSTN" /> <i
+									class="form-control-feedback glyphicon glyphicon-user has-feedback-left"></i>
+								<span class="glyphicon glyphicon-ok form-control-feedback"
+									ng-show="registrationForm.uGSTN.$touched && registrationForm.uGSTN.$valid"></span>
+
+								<div class="text-danger paddingTB0"
+									ng-messages="registrationForm.uGSTN.$error"
+									ng-if="registrationForm.uGSTN.$touched || registrationForm.$submitted">
+									<div ng-message="required">GSTN is required.</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-3 col-xs-12"></div>
+					<div class="col-md-9 col-sm-9 col-xs-12">
+						<div class="{{msgtype}}">
+							<img src="{{msgimg}}" /> {{msg}}
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="text-center">
+							<input type="submit" value="Create New User"
+								class="btn btn-success" ng-disabled="isSubmitted" />
+						</div>
+					</div>
+					<div class="form-group text-center">
+						Already a member ? <a href="#/login">Log in</a>	here	
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

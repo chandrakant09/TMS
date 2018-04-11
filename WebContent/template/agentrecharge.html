@@ -1,0 +1,271 @@
+<div class="col-md-12 col-sm-12 col-xs-12 mrt10">
+              <div class="boxContaner">
+                <h4>Recharge<small></small></h4>
+                <div class="formContent" ng-controller="agentrechargeCtrl">
+                  
+                  
+                   <div class="form-group">
+                      <label ng-click="check();" class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Select Agent<span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="tags" ng-keyup="complete()" type="text" class="form-control col-md-7 col-xs-12" placeholder="please enter Agent Id" ng-model="user.UserId"  required/>
+            			
+            			   	
+                       				
+                      </div>
+                    </div>
+                  
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Select payment mode<span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select name="paymentMode" id="userDistt" class="form-control" 
+      						 ng-options="option for option in paymentTypes"
+     						 ng-model="user.PaymentType" ng-change="changeView()"></select>
+                        
+                      </div>
+                    </div>
+                    
+                     <br />
+                    
+                     <div ng-show="user.PaymentType=='Cheque'">
+                    		 
+                    		 <form  name="chequeForm" novalidate ng-submit="chequeForm.$valid && rechargeByCheque(chequeForm)">
+		                  
+		                      <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >Amount <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+		                      <input type="number" class="form-control col-md-7 col-xs-12" placeholder="please enter Amount" ng-model="cheque.Amount"  name="amount" required/>
+            					<i class="form-control-feedback glyphicon glyphicon-lock  has-feedback-left"></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="chequeForm.amount.$touched && chequeForm.amount.$valid"></span>
+            						<div class="text-danger paddingTB0" ng-messages="chequeForm.amount.$error"  ng-if="chequeForm.amount.$touched || chequeForm.$submitted" >
+          		  					<div ng-messages-include="views/messages.html"></div>
+            					</div>
+		                      </div>
+		                    </div>
+		                    <div class="cls"></div>
+		                     <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Fever Off <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+		                      <input type="text" class="form-control col-md-7 col-xs-12" placeholder="please enter your Fever off" ng-model="cheque.Feveroff" minlength="6" name="feveroff" required/>
+            					<i class="form-control-feedback glyphicon glyphicon-lock  has-feedback-left"></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="chequeForm.feveroff.$touched && chequeForm.feveroff.$valid"></span>
+            						<div class="text-danger paddingTB0" ng-messages="chequeForm.feveroff.$error"  ng-if="chequeForm.feveroff.$touched || chequeForm.$submitted" >
+          		  					<div ng-messages-include="views/messages.html"></div>
+            					</div>
+		                      </div>
+		                    </div>
+		                    
+		                    <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cheque Number <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+		                      <input type="number" class="form-control col-md-7 col-xs-12" placeholder="please enter your Cheque Number" ng-model="cheque.ChequeNo" minlength="6" name="chequeNumber" required/>
+            					<i class="form-control-feedback glyphicon glyphicon-lock  has-feedback-left"></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="chequeForm.chequeNumber.$touched && chequeForm.chequeNumber.$valid"></span>
+            						<div class="text-danger paddingTB0" ng-messages="chequeForm.chequeNumber.$error"  ng-if="chequeForm.chequeNumber.$touched || chequeForm.$submitted" >
+          		  					<div ng-messages-include="views/messages.html"></div>
+            					</div>
+		                      </div>
+		                    </div>
+		                    
+		                     <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Bank Name <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+		                      <input type="text" class="form-control col-md-7 col-xs-12" placeholder="please enter your Bank Name" ng-model="cheque.BankName" minlength="6" name="bankName" required/>
+            					<i class="form-control-feedback glyphicon glyphicon-lock  has-feedback-left"></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="chequeForm.bankName.$touched && chequeForm.bankName.$valid"></span>
+            						<div class="text-danger paddingTB0" ng-messages="chequeForm.bankName.$error"  ng-if="chequeForm.bankName.$touched || chequeForm.$submitted" >
+          		  					<div ng-messages-include="views/messages.html"></div>
+            					</div>
+		                      </div>
+		                    </div>
+		                     <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Bank Code<small>(IFSC)</small> <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+		                      <input type="text" class="form-control col-md-7 col-xs-12" placeholder="please enter your password" ng-model="cheque.ifsc" minlength="6" name="ifscCode" required/>
+            					<i class="form-control-feedback glyphicon glyphicon-lock  has-feedback-left"></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="chequeForm.ifscCode.$touched && chequeForm.ifscCode.$valid"></span>
+            						<div class="text-danger paddingTB0" ng-messages="chequeForm.ifscCode.$error"  ng-if="chequeForm.ifscCode.$touched || chequeForm.$submitted" >
+          		  					<div ng-messages-include="views/messages.html"></div>
+            					</div>
+		                      </div>
+		                    </div>
+		                    
+		                   
+		                    
+		                    <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Date of Cheque <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+		                      <input type="date" class="form-control col-md-7 col-xs-12" placeholder="please enter your password" ng-model="cheque.ChequeDate" minlength="6" name="dateCreation" required/>
+            					<i class="form-control-feedback glyphicon glyphicon-lock  has-feedback-left"></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="chequeForm.dateCreation.$touched && chequeForm.dateCreation.$valid"></span>
+            						<div class="text-danger paddingTB0" ng-messages="chequeForm.dateCreation.$error"  ng-if="chequeForm.dateCreation.$touched || chequeForm.$submitted" >
+          		  					<div ng-messages-include="views/messages.html"></div>
+            					</div>
+		                      </div>
+		                    </div>
+		                    
+		                    <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Status<span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+		                      <select  class="form-control" name="status" ng-model="cheque.Status" ng-options="x for x in statuslist" required="required">
+							  </select>
+		                      <i class="form-control-feedback glyphicon glyphicon-lock  has-feedback-left"></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="chequeForm.status.$touched && chequeForm.status.$valid"></span>
+            						<div class="text-danger paddingTB0" ng-messages="chequeForm.status.$error"  ng-if="chequeForm.status.$touched || chequeForm.$submitted" >
+          		  					<div ng-messages-include="views/messages.html"></div>
+            					</div>
+		                      </div>
+		                    </div>
+		                    
+		                   
+		                    <div class="{{msgtype}}" ><img src="{{msgimg}}"/> {{msg}}</div>
+		                    
+		                    <div class="ln_solid"></div>
+			                    <div class="form-group">
+			                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+			                        <button type="button" class="btn btn-primary">Cancel</button>
+			                        <button type="submit" class="btn btn-success" ng-disabled="isSubmitted">Submit</button>
+			                      </div>
+			                    </div>
+                   			</form>
+                    </div> 
+                    
+                     <div ng-show="user.PaymentType=='Cash'">
+                    	  <form  name="cashForm" novalidate ng-submit="cashForm.$valid && rechargeByCash(cashForm)">
+		                    <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Amount" >Amount <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+		                      <input type="number" class="form-control col-md-7 col-xs-12" placeholder="please enter amount" ng-model="cash.Amount"  name="amount" required/>
+            					<i class="form-control-feedback glyphicon glyphicon-lock  has-feedback-left"></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="cashForm.amount.$touched && cashForm.amount.$valid"></span>
+            						<div class="text-danger paddingTB0" ng-messages="cashForm.amount.$error"  ng-if="cashForm.amount.$touched || cashForm.$submitted" >
+          		  					<div ng-messages-include="views/messages.html"></div>
+            					</div>
+		                      </div>
+		                    </div>
+		                    
+		                    <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Amount" >Deposit Date <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+		                      <input  type="date" class="form-control col-md-7 col-xs-12"  ng-model="cash.DateOfDepositeCash"  name="depositDate" required/>
+            					<i class="form-control-feedback glyphicon glyphicon-lock  has-feedback-left"></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="cashForm.depositDate.$touched && cashForm.depositDate.$valid"></span>
+            						<div class="text-danger paddingTB0" ng-messages="cashForm.depositDate.$error"  ng-if="cashForm.depositDate.$touched || cashForm.$submitted" >
+          		  					<div ng-messages-include="views/messages.html"></div>
+            					</div>
+		                      </div>
+		                    </div>
+		                    
+		                   
+		                    <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Remark" >Remark <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+		                      <input type="text" class="form-control col-md-7 col-xs-12" placeholder="please enter Remark" ng-model="cash.Remark"  name="remark" required/>
+            					<i class="form-control-feedback glyphicon glyphicon-lock  has-feedback-left"></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="cashForm.remark.$touched && cashForm.remark.$valid"></span>
+            						<div class="text-danger paddingTB0" ng-messages="cashForm.remark.$error"  ng-if="cashForm.remark.$touched || cashForm.$submitted" >
+          		  					<div ng-messages-include="views/messages.html"></div>
+            					</div>
+		                      </div>
+		                    </div>
+		                    <div class="{{msgtype}}" ><img src="{{msgimg}}"/> {{msg}}</div>
+		                    <div class="ln_solid"></div>
+			                    <div class="form-group">
+			                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+			                        <button type="button" class="btn btn-primary">Cancel</button>
+			                        <button type="submit" class="btn btn-success" ng-disabled="isSubmitted" >Submit</button>
+			                      </div>
+			                    </div>
+			                </form>    
+                   
+                    </div> 
+                    
+                    <div ng-show="user.PaymentType=='Demand Draft'">
+                    
+                     <form  name="ddForm" novalidate ng-submit="ddForm.$valid && rechargeByDD(ddForm)">
+                            <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Amount" >Amount <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+		                      <input type="number" class="form-control col-md-7 col-xs-12" placeholder="please enter amount" ng-model="demanddraft.Amount"  name="amount" required/>
+            					<i class="form-control-feedback glyphicon glyphicon-lock  has-feedback-left"></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="ddForm.amount.$touched && ddForm.amount.$valid"></span>
+            						<div class="text-danger paddingTB0" ng-messages="ddForm.amount.$error"  ng-if="ddForm.amount.$touched || ddForm.$submitted" >
+          		  					<div ng-messages-include="views/messages.html"></div>
+            					</div>
+		                      </div>
+		                    </div>
+		                     <br />
+		                    <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Fever Off" >Fever Off <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+		                      <input type="text" class="form-control col-md-7 col-xs-12" placeholder="please enter the Fever off" ng-model="demanddraft.Feveroff" minlength="6" name="feveroff" required/>
+            					<i class="form-control-feedback glyphicon glyphicon-lock  has-feedback-left"></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="ddForm.feveroff.$touched && ddForm.feveroff.$valid"></span>
+            						<div class="text-danger paddingTB0" ng-messages="ddForm.feveroff.$error"  ng-if="ddForm.feveroff.$touched || ddForm.$submitted" >
+          		  					<div ng-messages-include="views/messages.html"></div>
+            					</div>
+		                      </div>
+		                    </div>
+		                     <br />
+		                    <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="DD Number" >DD Number <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+		                      <input type="number" class="form-control col-md-7 col-xs-12" placeholder="please enter DD Number" ng-model="demanddraft.Ddnumber" minlength="6" name="ddnumber" required/>
+            					<i class="form-control-feedback glyphicon glyphicon-lock  has-feedback-left"></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="ddForm.ddnumber.$touched && ddForm.ddnumber.$valid"></span>
+            						<div class="text-danger paddingTB0" ng-messages="ddForm.ddnumber.$error"  ng-if="ddForm.ddnumber.$touched || ddForm.$submitted" >
+          		  					<div ng-messages-include="views/messages.html"></div>
+            					</div>
+		                      </div>
+		                    </div>
+		                     <br />
+		                    <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Date Created" >Date Created<span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+		                      <input type="date" class="form-control col-md-7 col-xs-12" placeholder="please enter Date created" ng-model="demanddraft.DateCreated" minlength="6" name="datecreated" required/>
+            					<i class="form-control-feedback glyphicon glyphicon-lock  has-feedback-left"></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="ddForm.datecreated.$touched && ddForm.datecreated.$valid"></span>
+            						<div class="text-danger paddingTB0" ng-messages="ddForm.datecreated.$error"  ng-if="ddForm.datecreated.$touched || ddForm.$submitted" >
+          		  					<div ng-messages-include="views/messages.html"></div>
+            					</div>
+		                      </div>
+		                    </div>
+		                    <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Status<span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+		                      <select  class="form-control" name="status" ng-model="demanddraft.Status" ng-options="x for x in statuslist" required="required">
+							  </select>
+		                      <i class="form-control-feedback glyphicon glyphicon-lock  has-feedback-left"></i><span class="glyphicon glyphicon-ok form-control-feedback" ng-show="ddForm.status.$touched && ddForm.status.$valid"></span>
+            						<div class="text-danger paddingTB0" ng-messages="ddForm.status.$error"  ng-if="ddForm.status.$touched || ddForm.$submitted" >
+          		  					<div ng-messages-include="views/messages.html"></div>
+            					</div>
+		                      </div>
+		                    </div>
+		                     <br />
+		                     <div class="{{msgtype}}" ><img src="{{msgimg}}"/> {{msg}}</div>
+		                     <div class="ln_solid"></div>
+			                     <div class="form-group">
+			                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+			                        <button type="button" class="btn btn-primary">Cancel</button>
+			                        <button type="submit" class="btn btn-success" ng-disabled="isSubmitted" >Submit</button>
+			                      </div>
+			                    </div>
+			                   
+		              </form>      
+                   
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                   
+
+                 </div>
+              </div>
+            </div>
+    
+    </div>

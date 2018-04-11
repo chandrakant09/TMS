@@ -1,0 +1,241 @@
+<div class="">
+	<div class="x_panel">
+		<div class="x_titler">
+			<h3>Add Your Truck</h3>
+		</div>
+		<div class="x_content" ng-controller="registerBoxCtrl">
+			<br>
+			<form id="demo-form2" data-parsley-validate
+				class="form-horizontal form-label-left" role="form"
+				name="registrationForm" novalidate
+				ng-submit="registrationForm.$valid && addTruck(registrationForm.$valid)">
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12"
+						for="first-name">Truck No. <span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+
+						<input type="text" class="form-control"
+							placeholder="please enter Truck No*" ng-model="truck.truckno"
+							name="truckno" ng-minlength="2" ng-maxlength="30" required /> <span
+							class="glyphicon glyphicon-ok form-control-feedback"
+							ng-show="registrationForm.truckno.$touched && registrationForm.truckno.$valid"></span>
+
+						<div class="text-danger paddingTB0"
+							ng-messages="registrationForm.truckno.$error"
+							ng-if="registrationForm.truckno.$touched || registrationForm.$submitted">
+							<div ng-message="required">Truck No. is required.</div>
+							<div ng-message="minlength">Truck No. is too short.</div>
+							<div ng-message="maxlength">Truck No. can be 30 characters
+								long.</div>
+							<div ng-message="pattern">Must contain letters/spaces.</div>
+
+						</div>
+
+
+					</div>
+
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12"
+						for="first-name">Model No. <span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+
+						<input type="text" class="form-control"
+							placeholder="please enter Model No.*" ng-model="truck.modelno"
+							name="modelno" ng-minlength="2" ng-maxlength="30" required /> <span
+							class="glyphicon glyphicon-ok form-control-feedback"
+							ng-show="registrationForm.modelno.$touched && registrationForm.modelno.$valid"></span>
+
+						<div class="text-danger paddingTB0"
+							ng-messages="registrationForm.modelno.$error"
+							ng-if="registrationForm.modelno.$touched || registrationForm.$submitted">
+							<div ng-message="required">Model No. is required.</div>
+							<div ng-message="minlength">Model No. is too short.</div>
+							<div ng-message="maxlength">Model No. can be 30 characters
+								long.</div>
+							<div ng-message="pattern">Must contain letters/spaces.</div>
+
+						</div>
+
+
+					</div>
+
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">
+						Fuel Average KM/L<span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<input type="text" class="form-control" name="fuelavg" 
+							placeholder="please enter Fuel Average KM/L*"
+							ng-model="truck.fuelavg" required>
+						<span class="glyphicon glyphicon-ok form-control-feedback"
+							ng-show="registrationForm.fuelavg.$touched && registrationForm.fuelavg.$valid"></span>
+						<div class="text-danger paddingTB0"
+							ng-messages="registrationForm.fuelavg.$error"
+							ng-if="registrationForm.fuelavg.$touched || registrationForm.$submitted">
+							<div ng-message="required">Fuelavg Average is required.</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">
+						Insurance No <span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<input type="text" class="form-control" name="insuranceno" placeholder="please enter the insuranceno No"
+							ng-model="truck.insuranceno" required>
+						<span class="glyphicon glyphicon-ok form-control-feedback"
+							ng-show="registrationForm.insuranceno.$touched && registrationForm.insuranceno.$valid"></span>
+						<div class="text-danger paddingTB0"
+							ng-messages="registrationForm.insuranceno.$error"
+							ng-if="registrationForm.insuranceno.$touched || registrationForm.$submitted">
+							<div ng-message="required">Insurance No is required.</div>
+						</div>							
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">
+						Purchase Date <span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<input type="text" class="form-control" name="purchasedate"
+							ng-model="truck.purchasedate" placeholder="please enter the truck purchas date" required>
+							
+							<span class="glyphicon glyphicon-ok form-control-feedback"
+							ng-show="registrationForm.purchasedate.$touched && registrationForm.purchasedate.$valid"></span>
+						<div class="text-danger paddingTB0"
+							ng-messages="registrationForm.purchasedate.$error"
+							ng-if="registrationForm.purchasedate.$touched || registrationForm.$submitted">
+							<div ng-message="required">Purchasedate is required.</div>
+						</div>							
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">
+						Driver Name <span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<input type="text" class="form-control" name="drivername"
+							ng-model="truck.drivername" placeholder="please enter the driver Name" required>
+							
+							<span class="glyphicon glyphicon-ok form-control-feedback"
+							ng-show="registrationForm.drivername.$touched && registrationForm.drivername.$valid"></span>
+						<div class="text-danger paddingTB0"
+							ng-messages="registrationForm.drivername.$error"
+							ng-if="registrationForm.drivername.$touched || registrationForm.$submitted">
+							<div ng-message="required">Driver Name is required.</div>
+						</div>							
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">
+						Driver Mob <span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<input type="text" class="form-control" ng-model="truck.drivermob" name="drivermob" 
+						placeholder="please enter the driver mobile" required>
+						
+						<span class="glyphicon glyphicon-ok form-control-feedback"
+							ng-show="registrationForm.drivermob.$touched && registrationForm.drivermob.$valid"></span>
+						<div class="text-danger paddingTB0"
+							ng-messages="registrationForm.drivermob.$error"
+							ng-if="registrationForm.drivermob.$touched || registrationForm.$submitted">
+							<div ng-message="required">Driver mobile number is required.</div>
+						</div>							
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">
+						Driver Id Adhar/Pan/Voter Id <span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<input type="text" class="form-control" ng-model="truck.driverid" name="driverid" 
+						placeholder="please enter the driver id" required>
+						
+						<span class="glyphicon glyphicon-ok form-control-feedback"
+							ng-show="registrationForm.driverid.$touched && registrationForm.driverid.$valid"></span>
+						<div class="text-danger paddingTB0"
+							ng-messages="registrationForm.driverid.$error"
+							ng-if="registrationForm.driverid.$touched || registrationForm.$submitted">
+							<div ng-message="required">Driver Id is required.</div>
+						</div>							
+						
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">
+						Drivery License No. <span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<input type="text" class="form-control"
+							ng-model="truck.driverylicenseno" name="driverylicenseno"
+							 placeholder="please enter drivery license no" required>
+							
+							<span class="glyphicon glyphicon-ok form-control-feedback"
+							ng-show="registrationForm.driverylicenseno.$touched && registrationForm.driverylicenseno.$valid"></span>
+						<div class="text-danger paddingTB0"
+							ng-messages="registrationForm.driverylicenseno.$error"
+							ng-if="registrationForm.driverylicenseno.$touched || registrationForm.$submitted">
+							<div ng-message="required">Drivery Licenseno No is required.</div>
+						</div>							
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">
+						Max Transport Capacity in KM <span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<input type="text" class="form-control"
+							ng-model="truck.maxtransportcapacity" name="maxtransportcapacity" 
+							placeholder="please enter the max capacity" required>
+							
+							<span class="glyphicon glyphicon-ok form-control-feedback"
+							ng-show="registrationForm.maxtransportcapacity.$touched && registrationForm.maxtransportcapacity.$valid"></span>
+						<div class="text-danger paddingTB0"
+							ng-messages="registrationForm.maxtransportcapacity.$error"
+							ng-if="registrationForm.maxtransportcapacity.$touched || registrationForm.$submitted">
+							<div ng-message="required">Max transport capacity is required.</div>
+						</div>							
+					</div>
+				</div>
+
+				<div class="ln_solid"></div>
+				<div class="{{msgtype}}">
+					<img src="{{msgimg}}" /> {{msg}}
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+						<button type="reset" class="btn btn-primary">Cancel</button>
+						<input type="submit" value="Add Truck" class="btn btn-success"
+							ng-disabled="isSubmitted" />
+					</div>
+				</div>
+			</form>
+
+
+
+
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+
+

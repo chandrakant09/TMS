@@ -1,0 +1,70 @@
+<div class="col-md-12 col-sm-12 col-xs-12 mrt10" ng-controller="cashDetailCtrl">
+              <div class="boxContaner">
+                <h4>Cash Report</h4>
+                <button ng-click="exportData()">Export Data</button> 
+               <br/><br/>
+                <div class="formContent"   >
+                
+                 
+                   
+                
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" >Start Date<span class="required">*</span>
+                      </label>
+                     
+                       
+                        <div class="col-md-6" ng-controller="DatepickerCtrl">
+					        <p class="input-group" > 
+					          <input type="text" name="startDate"  id="startDate" class="form-control" uib-datepicker-popup="{{format}}" ng-model="x1" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+					          <span class="input-group-btn">
+					            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+					          </span>
+					        </p>
+					    </div> 
+                      
+                 <br/><br/><br/>
+                    
+                    
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" >End Date<span class="required">*</span>
+                      </label>
+                       <div class="col-md-6" ng-controller="DatepickerCtrl">
+					        <p class="input-group" > 
+					          <input type="text" name="endDate" id="endDate" class="form-control" uib-datepicker-popup="{{format}}" ng-model="x2" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+					          <span class="input-group-btn">
+					            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+					          </span>
+					        </p>
+					    </div> 
+				  <input type="Button" ng-click="getCashDetailstList()" value="Fetch Data" class="btn btn-primary"/>
+                      <br><br><br>
+               
+                  <div class="formContent"  id="exportable" ng-if="cashdetailList">
+                  <table class="producttable">
+						<tr>
+							<td>S.No.</td>
+						    <td>User Id</td>
+							<td>Name</td>
+							<td>Amount</td>
+							<td>Status</td>
+							<td>Date Of Deposite</td>
+							<td>Remark</td>
+							<td>Recharge By</td>
+						</tr>
+						<tr ng-repeat="obj in cashdetailList">
+							<td>{{$index+1}}</td>
+							<td>{{getEDisttID(obj.UserId)}}</td>
+							<td>{{getUserName(obj.UserId)}}</td>
+							<td>{{obj.Amount}}</td>
+							<td>{{obj.Status}}</td>
+							<td>{{obj.DateOfDepositeCash | date: 'dd-MM-yyyy HH:mm'}}</td>
+							<td>{{obj.Remark}}</td>
+							<td>{{getUserName(obj.RechargeBy)}}</td>
+							
+				  		</tr>
+						
+					</table>
+                </div>
+              </div>
+  </div>
+    
+			
+						

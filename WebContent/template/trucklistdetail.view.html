@@ -1,0 +1,47 @@
+<div class="">
+      <div class="x_panel">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <h2>Truck Details</h2>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+        	<input type="text" ng-model="searchTruck" class="form-control" placeholder="Search...">
+        </div>
+        <div class="x_content" ng-controller="userListCtrl">
+          <div class="table-responsive">
+            <table class="table table-striped jambo_table bulk_action">
+              <thead>
+                <tr class="headings">
+                 	<th>S.No.</th>
+					<th>Truck No</th>
+					<th>Model No</th>
+					<th>Fuel Avg</th>
+					<th>Insurance No</th>
+					<th>Driver Name</th>
+					<th>Truck Token No</th>
+					<th>Recharge Truck</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                 <tr ng-repeat="obj in truckListDetail | filter : searchTruck"">
+					<td>{{$index+1}}</td>
+					<td>{{obj.truckno}}</td>
+					<td>{{obj.modelno}}</td>
+					<td>{{obj.fuelavg}}</td>
+					<td>{{obj.insuranceno}}</td>
+					<td>{{obj.drivername}}</td>
+					<td>{{obj.trucktokenno}}</td>
+					<td ng-controller="WalletCtrl">
+						<a ui-sref=".buybalance" class="btn btn-success"><i
+							class=" fa fa-bolt"></i> Recharge</a>
+					</td>
+				</tr>
+              </tbody>
+            </table>
+          </div>
+  		</div>
+      </div>
+    </div>
+
+
+

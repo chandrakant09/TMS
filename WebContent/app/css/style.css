@@ -1,0 +1,43 @@
+.body-bg{
+	background-image : url("../../../app/images/1.jpg");
+	background-position: center;
+	background-repeat: no-repeat; 
+}
+.register{
+	margin: 4% auto;
+	max-width: 800px;
+}
+.login{
+	background-color: #eee;
+}
+.x_titler{
+	text-align: center;
+	border-bottom: 1px solid;
+}
+.login{
+	color:#2a3f54;
+	background-color: #ccc;
+}
+.login button{
+	color:#2a3f54;
+	background-color: #ccc;
+}
+.login button:hover{
+	color:#2a3f54;
+	background-color: #e6e4e4;
+}
+.login_form {
+    padding: 20px;
+}
+.login_content form div a {
+	color:#2a3f54;
+    font-size: 14px;
+    margin: 10px 15px 0 0;
+}
+.forgotPassword{
+	background-color:#eee;
+	margin: 10% auto;
+	text-align:center;
+	max-width: 500px;
+	z-index: 999
+}

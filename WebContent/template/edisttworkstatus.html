@@ -1,0 +1,37 @@
+<div class="col-md-12 col-sm-12 col-xs-12 mrt10">
+              <div class="boxContaner">
+                <h4>EDistrict Work Status</h4>
+                <div class="formContent" ng-controller="workStatusCtrl">
+               <button ng-click="exportData()">Export Data</button> 
+                  <div class="formContent"   id="exportable">
+                  <table class="producttable">
+						<tr>
+							
+							<td>S.No.</td>
+							<td>VLE Id</td>
+							<td>Name</td>
+							<td>Address</td>
+							<td>Transaction (Debit)</td>
+							<td>No. of Application</td>
+							<td>VLE Commission</td>
+							
+						</tr>
+						<tr ng-repeat="obj in workstatus">
+							
+							
+							<td>{{$index+1}}</td>
+							<td>{{obj[1]}}</td>
+							<td>{{obj[2]}} {{obj[3]}}</td>
+							<td>{{obj[4]}}</td>
+							<td>{{obj[5]}}</td>
+							<td>{{obj[5]/20}}</td>
+							<td>{{((obj[5]/20)*2.40).toFixed(2)}}</td>
+						</tr>
+						
+					</table>
+					</div>
+					<!-- <div class="gridStyle" ng-grid="gridOptions"></div> -->
+                
+              </div>
+            </div>
+     </div>

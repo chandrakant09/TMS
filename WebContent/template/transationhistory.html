@@ -1,0 +1,81 @@
+<div class="col-md-12 col-sm-12 col-xs-12 mrt10">
+              <div class="boxContaner">
+                <h4>Transaction History<small></small></h4>
+                <div class="formContent" ng-controller="transactionHisCtrl">
+                  <br />
+                 
+                   <div class="form-group" >
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12">User Id
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                      	  <input  id="tags" ng-keyup="complete()"  type="text" ng-model="reportFilter.UserId" required class="form-control col-md-7 col-xs-12" >
+                      </div>
+                    </div>
+                	
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" >Start Date<span class="required">*</span>
+                      </label>
+                         
+                         <div class="col-md-6" ng-controller="DatepickerCtrl" >
+					        <p class="input-group"> 
+					          <input type="text" name="startDate"  id="startDate" class="form-control" uib-datepicker-popup="{{format}}" ng-model="StartDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+					          <span class="input-group-btn">
+					            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+					          </span>
+					        </p>
+					    </div>
+					    
+					    <br/><br/><br/>
+                       
+                   
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" >End Date<span class="required">*</span>
+                      </label>
+	                   <div class="col-md-6" ng-controller="DatepickerCtrl">
+				        <p class="input-group"> 
+				          <input type="text" name="endDate" id="endDate" class="form-control" uib-datepicker-popup="{{format}}" ng-model="EndDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+				          <span class="input-group-btn">
+				            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+				          </span>
+				        </p>
+				      </div>
+              
+               
+                  <input type="Button" ng-click="getTransactionList()" value="Fetch Data" class="btn btn-primary">
+                   
+                  <small></small>
+                  <br><br><br>
+                  <button ng-click="exportData()">Export Data</button> 
+                  
+                  <div  class="formContent"  id="exportable" ng-if="transactionList">
+                  <table class="producttable">
+						<tr>
+							<td>S.No.</td>
+							<td>Transaction Id</td>
+							<td>E Distt Id</td>
+							<td>User Name</td>
+							<td>Email</td>
+							<td>Amount</td>
+							<td>Transaction Type</td>
+							<td>Balance</td>
+							<td>Transaction Time</td>
+							<td>Transaction Status</td>
+						</tr>
+						<tr ng-repeat="obj in transactionList">
+							<td>{{$index+1}}</td>
+							<td>{{obj.TransactionId}}</td>
+							<td>{{getEDisttID(obj.UserId)}}</td>
+							<td>{{getUserName(obj.UserId)}}</td>
+							<td>{{getEmailId(obj.UserId)}}</td>
+							<td>{{obj.Amount}}</td>
+							<td>{{obj.TransactionType}}</td>
+							<td>{{(obj.CurrentBalance.toFixed(2))}}</td>
+							<td>{{obj.TransactionTime | date: 'dd-MM-yyyy HH:mm'}}</td>
+							<td>{{obj.Remark}}</td>
+						</tr>
+						
+					</table>
+					</div>
+                </div>
+              </div>
+            </div>
+    
+    </div>

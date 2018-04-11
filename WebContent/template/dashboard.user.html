@@ -1,0 +1,58 @@
+<style>
+.userNaviagtion{background: #0DA3D6; /* Old browsers */ border:none; margin-bottom:0px;}
+.navbar-inverse .navbar-nav > li > a{color:#000; padding-left:8px; padding-right:8px;}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus{ background:#fff; color:#000}
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus{ background:#0f6cb2; color:#fff}
+.navTransiction{ background:#0f6cb2; }
+.navTransiction a{color:#fff!important;}
+.navTransiction  ul li a {color:#000!important;}
+</style>
+<!--header start here-->
+<div ng-include="'template/dashboard.user.header.html'"></div>
+<!--header End here-->
+ <div class="col-md-12 userdashboardWrapper">
+	  <!--navigation start here-->
+    
+	
+		<nav class="navbar navbar-inverse userNaviagtion" >
+		  <div class="container-fluid">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span> 
+			  </button>
+			  <div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav">
+			  <li class="active"><a ui-sref=".uhome" >Home</a></li>
+			  <li><a href="http://edistrict.up.nic.in" target="_blank">E-District</a></li>
+			  <li class=""><a href="" class="dropdown-toggle" data-toggle="dropdown">My Transiction
+				<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+				  <li><a ui-sref=".utransationhistory" >Transiction History</a></li>
+				  <li><a ui-sref=".urechargehistory" >Recharged History</a></li>
+				  <li><a ui-sref=".uchequedetails">Cheque History</a></li> 
+				  <li><a ui-sref=".udddetails">Demand Draft History</a></li> 
+				  <li><a ui-sref=".ucddetails">Cash Deposit History</a></li> 
+				</ul>
+				</li>
+				 <li><a ui-sref=".application" >My Application</a></li>
+			  </ul>
+			</div>
+		  </div>
+		</nav>
+
+    <!--navigation end here-->
+
+<!-- Page Content start here-->
+
+
+
+<div class="col-md-12 userCotentWrapper" >
+				      
+	<div ui-view="userdashBoard">
+					 <!-- <div ng-include="'template/dashboard.user.body.html'"></div>  -->
+				</div>
+	
+</div>
+</div>
+

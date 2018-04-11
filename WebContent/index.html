@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+
+   <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<title>Tranage</title>
+    <link rel="shortcut icon" href="app/images/favicon.ico">
+   
+    <!-- Bootstrap Core CSS -->
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <link href="app/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	  <link href="app/vendors/css/custom.css" rel="stylesheet">
+	  <link href="app/css/style.css" rel="stylesheet">
+   	
+   	<script src="app/lib/jquery-1.10.2.min.js"></script> 
+    
+    <!-- Angular JavaScript -->
+	<script src="app/lib/angular.min.js"></script>
+   	<script src="app/lib/angular-resource.min.js"></script>
+	<script src="app/lib/angular-ui-router.js"></script>
+	<script src="app/lib/jquery-ui.js"></script>	 
+	<script src="app/app.js"></script>
+	<script src="app/config/router.js"></script>
+	<script src="app/config/constants.js"></script>
+	<script src="app/lib/angular-messages.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="app/lib/ui-bootstrap-tpls-0.12.0.js"></script>
+
+	<!-- Bootstrap ProgressBar JS -->
+	<script src="app/lib/angular-count-to.js"></script>
+	<script src="app/lib/stopExecutionOnTimeout.js"></script>
+
+	<!--Add the Files -->
+	<link rel="stylesheet" href="http://cdn.rawgit.com/angular-ui/ng-grid/v2.0.14/ng-grid.css" />
+    <script src="http://cdn.rawgit.com/angular-ui/ng-grid/v2.0.14/build/ng-grid.js"></script>
+    <script src="http://cdn.rawgit.com/angular-ui/ng-grid/v2.0.14/plugins/ng-grid-flexible-height.js"></script>
+
+	<!-- Angular Controller -->
+	<script src="app/controllers/homeController.js"></script>
+	<script src="app/controllers/dashboardCtrl.js"></script>
+	<script src="app/controllers/rightMenuCtrl.js"></script>
+	<script src="app/controllers/registerCtrl.js"></script>
+	<script src="app/controllers/logoutCtrl.js"></script>
+	<script src="app/controllers/reportCtrl.js"></script>
+	<script src="app/controllers/userAdmiCtrl.js"></script>
+	<script src="app/controllers/admin.pieChart.js"></script>
+
+	<!--  Angular services -->
+	<script src="app/services/loginservice.js"></script>
+	<script src="app/services/dashboardservice.js"></script>
+	<script src="app/services/registrationService.js"></script>
+	<script src="app/services/logoutservice.js"></script>
+	<script src="app/services/reportservice.js"></script>
+
+</head>
+
+<body ng-app="tmsServiceApp" class="nav-md">
+	<div ui-view style="height:100%; width:100%"></div>
+	
+	<script src="app/vendors/js/jquery.min.js"></script>
+    <script src="app/vendors/js/bootstrap.min.js"></script>
+    <script src="app/vendors/js/moment.min.js"></script>
+    <script src="app/vendors/js/custom.min.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<script type="text/javascript">
+function startUpload(){
+	alert("asitava");
+      document.getElementById('f1_upload_process').style.visibility = 'visible';
+      document.getElementById('f1_upload_form').style.visibility = 'hidden';
+      return true;
+}
+
+function stopUpload(success){
+      var result = '';
+      if (success == 1){
+         result = '<span class="msg">The file was uploaded successfully!</span><br/><br/>';
+      }
+      else {
+         result = '<span class="emsg">There was an error during file upload!</span><br/><br/>';
+      }
+      document.getElementById('f1_upload_process').style.visibility = 'hidden';
+      document.getElementById('f1_upload_form').innerHTML = result + '<label>File: <input name="myfile" type="file" size="30" /></label><label><input type="submit" name="submitBtn" class="sbtn" value="Upload" /></label>';
+      document.getElementById('f1_upload_form').style.visibility = 'visible';      
+      return true;   
+}
+</script> 
+<form action="/LEIPortal/singleSave" method="post" enctype="multipart/form-data" target="upload_target" onsubmit="startUpload();" > 
+<h5>File Upload</h5>
+<div class="labelArea">Browse From Your System</div>
+<!-- <p id="f1_upload_process">Loading...<br/><img src="assets/images/loader.gif" /><br/></p>
+<div ><input type="file" id="myfile" name="myfile" class="inputBox" accept=".xls,.xlsx" style="border:none;" ></div>
+<div class="cls"></div>
+	<div class="buttonholder">
+	   <button type="button" class="btn-white">Apply</button>
+	   
+	    <iframe id="upload_target" name="upload_target" src="#" style="width:500;height:500;border:10px solid #fff;"></iframe>
+	</div> -->
+	
+
+                     <p id="f1_upload_process">Loading...<br/><img src="assets/images/loader.gif" /><br/></p>
+                     <p id="f1_upload_form" align="center"><br/>
+                         <label>File:  
+                              <input name="myfile" type="file" size="30" />
+                         </label>
+                         <label>
+                             <input type="submit" name="submitBtn"  class="btn-white sbtn" value="Upload" />
+                         </label>
+                     </p>
+                     
+                     <iframe id="upload_target" name="upload_target" src="#" style="width:0;height:0;"></iframe>
+
+	
+</form>
+
+
+
+ 

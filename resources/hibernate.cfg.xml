@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration 
+PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+		<property name="current_session_context_class">thread</property>
+		<!-- <property name="connection.url">jdbc:mysql://thenatureworld.in:3306/thenatur_edistric</property>
+		<property name="connection.username">thenatur_user1</property>
+		<property name="connection.password">(m9FR;2S[IIJ</property> -->
+		<property name="connection.url">jdbc:mysql://localhost:3306/tms</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+		<property name="pool_size">10</property>
+		<property name="show_sql">true</property>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="max_fetch_depth">1</property>
+		<property name="use_sql_comments">true</property>
+		<property name="connection.autocommit">false</property>
+		<!-- <property name="hbm2ddl.auto">create</property> -->
+		
+		<mapping class="com.lei.domain.user.UserDomain"/>
+		<mapping class="com.lei.domain.user.UserStatusDomain"/>
+		<mapping class="com.lei.domain.user.StatusDomain"/>
+		<mapping class="com.lei.domain.roles.RolesDomain"/>
+		<mapping class="com.lei.domain.user.TruckDomain"/>
+		
+		
+		
+		
+		<mapping class="com.lei.domain.wallet.RechargeWalletDomain"/>
+		<mapping class="com.lei.domain.wallet.IndividualWalletDomain"/>
+		<mapping class="com.lei.domain.transaction.TransactionDetailDomain"/>
+		<mapping class="com.lei.domain.transaction.ChequeDetailDomain"/>
+		<mapping class="com.lei.domain.transaction.CommissionDivisionDomain"/>
+		<mapping class="com.lei.domain.transaction.CommissionMasterDomain"/>
+		
+		<mapping class="com.lei.domain.transaction.CashDomain"/>
+		<mapping class="com.lei.domain.transaction.DemandDraftDomain"/>  
+		<mapping class="com.lei.domain.transaction.EdisttDomain"/> 
+		<mapping class="com.lei.domain.transaction.PaidServices"/>
+		<mapping class="com.lei.domain.transaction.TransactionUpdate"/>
+		
+		
+		<mapping class="com.lei.domain.master.District"/>
+		<mapping class="com.lei.domain.master.Block"/>
+		<mapping class="com.lei.domain.user.MessageDomain"/>
+		
+		
+		
+		
+		<!-- 
+		<mapping class="com.lei.domain.file.FileDomain"/>
+		<mapping class="com.lei.domain.file.FileDataDomain"/>
+		
+		<mapping class="com.lei.domain.project.UserProjectDomain"/>
+		<mapping class="com.lei.domain.project.ProjectConfigDomain"/>
+		<mapping class="com.lei.domain.project.CodAttributesDomain"/>
+		<mapping class="com.lei.domain.project.ProjectExecutionDomain"/>
+		<mapping class="com.lei.domain.project.ProjectExecutionHistoryDomain"/>
+		<mapping class="com.lei.dao.scheduler.orm.domain.SchedulerDomain"/>
+		<mapping class="com.lei.domain.project.GeneratedReportsDomain"/>
+		<mapping class="com.lei.domain.project.ProjectSourceDomain"/>
+ -->		
+
+	</session-factory>
+</hibernate-configuration>

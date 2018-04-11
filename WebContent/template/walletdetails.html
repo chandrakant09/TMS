@@ -1,0 +1,30 @@
+<div class="col-md-12 col-sm-12 col-xs-12 mrt10" >
+              <div class="boxContaner" ng-controller="walletDetailsCtrl">
+                <h4>Wallet Data (Live)<small></small></h4> 
+                 <button ng-click="exportData()">Export Data</button> 
+               
+                <div class="formContent"   id="exportable">
+                  <table class="producttable">
+						<tr>
+							<td>S.No.</td>
+							<td>E-Distric Id </td>
+							<td>User Name</td>
+							<td>Email Id</td>
+							<td>Balance</td>
+							<td>Last Transaction</td>
+						</tr>
+						<tr ng-repeat="obj in walletList">
+							<td>{{$index+1}}</td>
+							<td>{{getEDisttID(obj.UserId)}}</td>
+							<td>{{getUserName(obj.UserId)}}</td>
+							<td>{{getEmailId(obj.UserId)}}</td>
+							<td>{{(obj.Balance).toFixed(2)}}</td>
+							<td>{{obj.Lastupdated | date: 'dd-MM-yyyy HH:mm'}}</td>
+						</tr>
+					</table>
+                </div>
+              </div>
+            </div>
+    
+    </div>
+

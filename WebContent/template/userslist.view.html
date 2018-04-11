@@ -1,0 +1,400 @@
+<div class="col-md-12 col-sm-12 col-xs-12 mrt10">
+              <div class="boxContaner">
+                <h4>Users List<small></small></h4>
+                <div class="formContent" ng-controller="userListCtrl">
+                  <br />
+                  <h4>Filter<small></small></h4>
+                  <div class="form-group">
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" ng-model="emailId" required class="form-control col-md-7 col-xs-12">
+                      </div>
+                    </div>
+                  
+                  
+                 <table class="producttable">
+						<tr>
+							<th>S.No.</th>
+							<th>E-District Id</th>
+							<th width="20%">Name</th>
+							<th>Email Id</th>
+							<th>District</th>
+							<th>Block</th>
+							<th>Area</th>
+							<th>Post</th>
+							<th>Village</th>
+							<th>Tehsil</th>
+							<th>Mobile No</th>
+						
+						</tr>
+						<tr ng-repeat="obj in userList | filter : emailId">
+						    <td>{{$index+1}}</td>
+							<td>{{obj.EdisttId}}</td>
+							<td ng-click="updateProfile(obj)">{{obj.FirstName}} {{obj.LastName}} </td>
+							<td>{{obj.Email}}</td>
+							<td>{{obj.Distt}}</td>
+							<td>{{obj.Block}}</td>
+							<td>{{obj.Area}}</td>
+							<td>{{obj.Post}}</td>
+						
+							<td>{{obj.Village}}</td>
+							<td>{{obj.Tehsil}}</td>
+							<td>{{obj.Mobile}}</td>
+						
+						</tr>
+						
+					</table>
+					<div class="UpdateDIV" id="UpdateDIV" style="display:none">
+						        <div class="boxContaner" class="loginBox" id="loginDiv">
+               <a class="close hideBox" href="" ng-click="hideupdateProfile()">×</a>
+               
+               			 <h4>Update User Profile By Admin<small></small></h4>
+                				<div class="formContent"  ng-controller="registerBoxCtrl">
+                    		<form role="form" name="registrationForm" novalidate ng-submit="registrationForm.$valid && updateUser(registrationForm.$valid)">
+		                  
+		                     <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >District <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+							  
+						    	<select ng-model="user.Distt"  class="form-control" name="distt" required="required">
+									<option selected value="">Select District</option>
+									<option ng-repeat="option in disttList" value="{{option.DisttName}}">{{option.DisttName}}</option>
+								</select>
+								<span class="glyphicon glyphicon-ok form-control-feedback"
+									ng-show="registrationForm.distt.$touched && registrationForm.distt.$valid"></span>
+								<div class="text-danger paddingTB0"
+									ng-messages="registrationForm.distt.$error"
+									ng-if="registrationForm.distt.$touched || registrationForm.$submitted">
+									<div ng-message="required">Please select the District</div>
+								</div> 
+							 
+							 </div>
+							  
+		                     </div>
+							
+							 <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >Block <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+							  
+												<select ng-model="user.Block"  class="form-control" ng-show="user.Distt"	 name="block" required="required">
+													<option selected value="">Select Block</option>
+													<option ng-repeat="block in getBlocks(user.Distt)" value="{{block.BlockName}}">{{block.BlockName}}</option>
+												</select>
+												<span class="glyphicon glyphicon-ok form-control-feedback"
+													ng-show="registrationForm.block.$touched && registrationForm.block.$valid"></span>
+												<div class="text-danger paddingTB0"
+													ng-messages="registrationForm.block.$error"
+													ng-if="registrationForm.block.$touched || registrationForm.$submitted">
+													<div ng-message="required">Please Select the Block.</div>
+													</div>
+												</div> 
+							  
+							  
+							  </div>
+							  
+		                   
+							
+							 <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >First Name <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+							  
+												<input type="text" class="form-control"
+													placeholder="please enter your First Name*"
+													ng-model="user.FirstName" name="userFirstName"
+													ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="2"
+													ng-maxlength="30" required /> <i
+													class="form-control-feedback glyphicon glyphicon-user has-feedback-left"></i>
+												<span class="glyphicon glyphicon-ok form-control-feedback"
+													ng-show="registrationForm.userFirstName.$touched && registrationForm.userFirstName.$valid"></span>
+
+												<div class="text-danger paddingTB0"
+													ng-messages="registrationForm.userFirstName.$error"
+													ng-if="registrationForm.userFirstName.$touched || registrationForm.$submitted">
+													<div ng-message="required">First Name is required.</div>
+													<div ng-message="minlength">First Name is too short.</div>
+													<div ng-message="maxlength">First Name can be 30 characters
+														long.</div>
+													<div ng-message="pattern">Must contain letters/spaces.</div>
+
+												</div>
+							  
+							  
+							  </div>
+							  
+		                    </div>
+							
+							 <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >Last Name <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+							  
+												<input type="text" class="form-control"	placeholder="please enter your Last Name*" ng-model="user.LastName"
+													name="userLastName" ng-pattern="/^[a-zA-Z\s]+$/"
+													ng-minlength="2" ng-maxlength="30" required /> <i
+													class="form-control-feedback glyphicon glyphicon-user has-feedback-left"></i>
+												<span class="glyphicon glyphicon-ok form-control-feedback"
+													ng-show="registrationForm.userLastName.$touched && registrationForm.userLastName.$valid"></span>
+													
+												<div class="text-danger paddingTB0"
+													ng-messages="registrationForm.userLastName.$error"
+													ng-if="registrationForm.userLastName.$touched || registrationForm.$submitted">
+													<div ng-message="required">Last Name is required.</div>
+													<div ng-message="minlength">Last Name is too short.</div>
+													<div ng-message="maxlength">Last Name can be 30 characters
+														long.</div>
+													<div ng-message="pattern">Must contain letters/spaces.</div>
+
+												</div>
+							  
+							  
+							  </div>
+							  
+		                    </div>
+							
+							 <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >Email  <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+							  
+												<input type="email" class="form-control"
+													placeholder="please enter your Email Id*" ng-model="user.Email"
+													name="userEmail" required  ng-focus="clearMsg();" readonly /> <i
+													class="form-control-feedback glyphicon glyphicon-envelope has-feedback-left"></i>
+												<span class="glyphicon glyphicon-ok form-control-feedback"
+													ng-show="registrationForm.userEmail.$touched && registrationForm.userEmail.$valid"></span>
+												<div class="text-danger paddingTB0"
+													ng-messages="registrationForm.userEmail.$error"
+													ng-if="registrationForm.userEmail.$touched || registrationForm.$submitted">
+													<div ng-message="required">Email Id is required.</div>
+													<div ng-message="email">Email Id is not Valid.</div>
+												</div>							  
+							  
+							  </div>
+							  
+		                    </div>
+							
+							 <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >Mobile <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+							  
+												<input type="text" class="form-control"
+													placeholder="please enter your Phone Number*" ng-model="user.Mobile"
+													name="userPhone"
+													ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
+													required /> <i
+													class="form-control-feedback glyphicon glyphicon-phone has-feedback-left"></i>
+												<span class="glyphicon glyphicon-ok form-control-feedback"
+													ng-show="registrationForm.userPhone.$touched && registrationForm.userPhone.$valid"></span>
+												<div class="text-danger paddingTB0"
+													ng-messages="registrationForm.userPhone.$error"
+													ng-if="registrationForm.userPhone.$touched || registrationForm.$submitted">
+													<div ng-message="required">Phone No is required.</div>
+													<div ng-message="pattern">Must be a valid 10 digit phone no.</div>
+												</div>							  
+							  
+							  </div>
+							  
+		                    </div>
+							
+							 <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >Area <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+							  
+												<select ng-model="user.Area"  class="form-control" name="area" required="required">
+													<option value="RURAL">Rural</option>
+													<option value="URBAN">Urban</option>
+												</select>
+												
+												</div> 
+							 </div>
+							 
+							
+							<div ng-show="user.Area=='RURAL'">
+							<div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >Village <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+							  
+												<input type="text" class="form-control"
+													placeholder="please enter your Village*"
+													ng-model="user.Village" name="userVillage"
+													/> <i
+													class="form-control-feedback glyphicon glyphicon-user has-feedback-left"></i>
+												<span class="glyphicon glyphicon-ok form-control-feedback"
+													ng-show="registrationForm.userVillage.$touched && registrationForm.userVillage.$valid"></span>
+
+												<div class="text-danger paddingTB0"
+													ng-messages="registrationForm.userVillage.$error"
+													ng-if="registrationForm.userVillage.$touched || registrationForm.$submitted">
+													<div ng-messages-include="views/messages.html"></div>
+												</div>
+							  
+							  
+							  </div>
+							  
+		                    </div>
+		                    
+		                    <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="post" >Post <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+							  
+												<input type="text" class="form-control"
+													placeholder="please enter your Post*"
+													ng-model="user.Post" name="userPost"
+													/> <i
+													class="form-control-feedback glyphicon glyphicon-user has-feedback-left"></i>
+												<span class="glyphicon glyphicon-ok form-control-feedback"
+													ng-show="registrationForm.userPost.$touched && registrationForm.userPost.$valid"></span>
+
+												<div class="text-danger paddingTB0"
+													ng-messages="registrationForm.userPost.$error"
+													ng-if="registrationForm.userPost.$touched || registrationForm.$submitted">
+													<div ng-messages-include="views/messages.html"></div>
+												</div>
+							  
+							  
+							  </div>
+							</div>
+							</div>
+							
+							<div ng-show="user.Area=='URBAN'">
+							<div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >Ward No <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+							  
+												<input type="text" class="form-control"
+													placeholder="please enter your Ward No*"
+													ng-model="user.WardNo" name="userWardNo"
+													 />  </div>
+							  
+		                    </div>
+		                    
+		                    <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="post" >Street / Muhalla <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+							  
+												<input type="text" class="form-control"
+													placeholder="please enter your Street"
+													ng-model="user.Street" name="userStreet"
+													/>
+							  
+							  
+							  </div>
+							</div>
+							<div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="post" >Tehsil <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+							  
+												<input type="text" class="form-control"
+													placeholder="please enter your Tehsil"
+													ng-model="user.Tehsil" name="userTehsil"
+													/> 
+							  
+							  
+							  </div>
+							</div>
+							</div>
+							
+							 <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >Address <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+							  
+												<input type="text" class="form-control"
+													placeholder="please enter your Address"
+													ng-model="user.Address" name="userAddress"
+													required /> <i
+													class="form-control-feedback glyphicon glyphicon-user has-feedback-left"></i>
+												<span class="glyphicon glyphicon-ok form-control-feedback"
+													ng-show="registrationForm.userAddress.$touched && registrationForm.userAddress.$valid"></span>
+
+												<div class="text-danger paddingTB0"
+													ng-messages="registrationForm.userAddress.$error"
+													ng-if="registrationForm.userVillage.$touched || registrationForm.$submitted">
+													<div ng-messages-include="views/messages.html"></div>
+												</div>
+							  
+							  
+							  </div>
+							  
+		                    </div>
+							
+							 <div class="form-group">
+		                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >E District Id <span class="required">*</span>
+		                      </label>
+		                      <div class="col-md-6 col-sm-6 col-xs-12">
+							  
+												<input type="text" class="form-control"
+													placeholder="please enter your  Edistrict ID"
+													ng-model="user.EdisttId" name="userEdisttId"
+													required readonly /> <i
+													class="form-control-feedback glyphicon glyphicon-user has-feedback-left"></i>
+												<span class="glyphicon glyphicon-ok form-control-feedback"
+													ng-show="registrationForm.userEdisttId.$touched && registrationForm.userEdisttId.$valid"></span>
+
+												<div class="text-danger paddingTB0"
+													ng-messages="registrationForm.userEdisttId.$error"
+													ng-if="registrationForm.userEdisttId.$touched || registrationForm.$submitted">
+													<div ng-messages-include="views/messages.html"></div>
+												</div>
+							  
+							  
+							  </div>
+							  
+		                    </div>
+		                    
+		                    <div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12"
+									for="first-name">New User<span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+			
+									<select ng-model="user.NewUser" class="form-control" name="newUser" required="required">
+										<option selected value="No" >Existing User</option>
+										<option value="Yes">New User</option>
+									</select>
+			
+								</div>
+							</div>
+						  
+		                   
+		                    <div class="ln_solid"></div>
+		                     <div class="{{msgtype}}" ><img src="{{msgimg}}"/> {{msg}}</div>
+		                    
+			                    <div class="form-group">
+			                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+			                     	<input type="submit" value="Update User Profile" class="btn btn-success"  ng-disabled="isSubmitted" />
+			                      </div>
+			                    </div>
+                   			</form>
+                   
+                    
+                    
+                    
+                    
+                    
+                    
+                   
+
+                 </div>
+              </div>
+   					</div>
+                </div>
+               </div>  
+            </div>
+
+    
+     
+    
+    
+    
+     
+						

@@ -1,0 +1,107 @@
+<div ng-controller="UserDashboardCtrl">
+
+	<div class="transictionHistoryWrapper container">
+		<div class="row">
+			<div class="col-md-6">
+				<ul class="list-group">
+					<li class="list-group-item active text-center"><h4>Profile</h4></li>
+					<li class="list-group-item text-center"><h4>{{dashboardData.Data.User.FirstName
+							}} {{dashboardData.Data.User.LastName}}</h4></li>
+					<li class="list-group-item"><strong>Village </strong> <span
+						class=""> : {{dashboardData.Data.User.Village}}</span></li>
+					<li class="list-group-item"><strong>District </strong> <span
+						class=""> : {{dashboardData.Data.User.Distt}}</span></li>
+					<li class="list-group-item"><strong>Address </strong><span
+						class=""> : {{dashboardData.Data.User.Address}}</span></li>
+				</ul>
+			</div>
+
+
+
+			<div class="col-md-6">
+				<ul class="list-group">
+					<li class="list-group-item active text-center"><h4>Transaction</h4></li>
+					<li class="list-group-item text-center"><h4>User Account Detail</h4></li></ul>
+						<div class="col-md-4">
+						  <ul class="list-group">
+							<li class="list-group-item active text-center">Total Recharge</li>
+							<li class="list-group-item text-center">
+							<span
+										id="AdminContent_BodyContentPlaceHolder_LoginView2_lblBala">
+										<div class="count">
+											<h4>
+												<i class="fa fa-inr"></i>
+												{{(dashboardData.Data.RechargeAmount).toFixed(2)}}
+											</h4>
+										</div>
+									</span>
+							</li>
+						  </ul>
+						</div>	
+						<div class="col-md-4">
+						  <ul class="list-group">
+							<li class="list-group-item active text-center">Total Deduction</li>
+							<li class="list-group-item text-center">
+								<span
+										id="AdminContent_BodyContentPlaceHolder_LoginView2_lblBala">
+										<div class="count">
+											<h4>
+												<i class="fa fa-inr"></i>
+												{{(dashboardData.Data.DebitAmount).toFixed(2)}}
+											</h4>
+										</div>
+									</span>
+							</li>
+						  </ul>
+						</div>	
+						<div class="col-md-4">
+						  <ul class="list-group">
+							<li class="list-group-item active text-center">Your Balance</li>
+							<li class="list-group-item text-center">
+							<span
+										id="AdminContent_BodyContentPlaceHolder_LoginView2_lblBala">
+										<div class="count">
+											<h4>
+												<i class="fa fa-inr"></i>
+												{{(dashboardData.Data.RechargeAmount-dashboardData.Data.DebitAmount).toFixed(2)}}
+											</h4>
+										</div>
+									</span>
+						  </ul>
+						</div>	
+			</div>
+		</div>
+		<div class="col-md-4">
+			<ul class="list-group">
+				<li class="list-group-item active text-center">Certificate
+					Charges</li>
+				<li class="list-group-item">1 - Cast Certificate <span
+					class="badge"><i class="fa fa-inr"></i> 17.60</span></li>
+				<li class="list-group-item">2 - Income Certificate <span
+					class="badge"><i class="fa fa-inr"></i> 17.60</span></li>
+				<li class="list-group-item">3 - Domicile Certificate <span
+					class="badge"><i class="fa fa-inr"></i> 17.60</span></li>
+			</ul>
+		</div>
+		<div class="col-md-4">
+			<ul class="list-group">
+				<li class="list-group-item active text-center">Integrated
+					Services Charges</li>
+				<li class="list-group-item">1 - Ration Card <span class="badge"><i
+						class="fa fa-inr"></i> 19.00</span></li>
+
+			</ul>
+		</div>
+		<div class="col-md-4">
+			<ul class="list-group">
+				<li class="list-group-item active text-center">News And Updates</li>
+				<li class="list-group-item"></li>
+
+			</ul>
+		</div>
+
+
+	</div>
+
+</div>
+<div ng-include="'template/home.footer.html'"></div>
