@@ -75,7 +75,7 @@ public class TransactionMaintenanceService {
 			//HttpSession session = request.getSession(true);
 			//String emailId =(String) session.getAttribute("userEmail");
 			if(emailId==null){
-				log.info("Email Id Null in Session ");
+				log.info("Email Id Null in Session.. ");
 				if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
 					User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 					emailId = user.getUsername();
