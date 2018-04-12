@@ -71,7 +71,7 @@ public class TransactionMaintenanceService {
 			headers="Accept=application/xml, application/json")
 	public void walletRecharge(@RequestParam("amount") double amount, @RequestParam("emailId") String emailId, HttpServletRequest request, HttpServletResponse response) throws LoginIDFormatException, ObjectNotSupportedException, ProcessFailedException, ServletException, IOException, InvalidFileException, InvalidKeyException {
 		try{
-			log.info("walletrecharge amount:"+amount);
+			log.info("walletrecharge amount is:"+amount);
 			//HttpSession session = request.getSession(true);
 			//String emailId =(String) session.getAttribute("userEmail");
 			if(emailId==null){
