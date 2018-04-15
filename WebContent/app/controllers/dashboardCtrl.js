@@ -88,15 +88,17 @@ tnwApp.controller('WalletCtrl', function($scope, $http,dashboardservice,loginser
 	    }, 1000);
 });
 
-tnwApp.controller('balanceCtrl', function($scope, dashboardservice,loginservice,$rootScope,$location){ 
+tnwApp.controller('balanceCtrl', function($scope, dashboardservice,reportservice, loginservice,$rootScope,$location){ 
 	 
 	loginservice.getUserInfo();
+	reportservice.getTruckListDetail();
 	
 	$scope.walletRecharge = function() {
 		 rechargeAmount=$scope.recharge;
 		 alert(JSON.stringify($scope.recharge));
 		 dashboardservice.walletRecharge(JSON.stringify($scope.recharge));
-	};
+	}; 
+	
 	
 	$scope.$on("responseStatus", function(e, kvp){
 		if(angular.equals(kvp.userData.ResponseCode,'5006')){

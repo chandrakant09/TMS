@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lei.dto.common.ResponseMessageDTO;
 import com.lei.dto.master.ReportFilter;
+import com.lei.dto.user.TruckDTO;
 import com.lei.dto.user.UserDTO;
 import com.lei.dto.wallet.CashDTO;
 import com.lei.dto.wallet.ChequeDTO;
@@ -30,6 +31,7 @@ import com.lei.dto.wallet.DashBoardReport;
 import com.lei.dto.wallet.DemandDraftDTO;
 import com.lei.dto.wallet.RechargeDTO;
 import com.lei.dto.wallet.TransactionUpdateDTO;
+import com.lei.dto.wallet.TruckRechargeDTO;
 import com.lei.dto.wallet.WalletDTO;
 import com.lei.exception.common.EmailException;
 import com.lei.exception.common.InvalidFileException;
@@ -117,6 +119,49 @@ public class TransactionMaintenanceService {
 			request.getRequestDispatcher("/template/error.jsp").forward(request, response);
 		}
 	}
+	
+	
+	@RequestMapping(value = "/truckwalletrecharge",
+			method = RequestMethod.POST,
+			headers="Accept=application/xml, application/json")
+	public void truckwalletrecharge(@RequestParam("amount") double amount, @RequestParam("truckid") long truckid) throws LoginIDFormatException, ObjectNotSupportedException, ProcessFailedException, ServletException, IOException, InvalidFileException, InvalidKeyException {
+		
+			log.info("truckwalletrecharge amount :"+amount);
+			//HttpSession session = request.getSession(true);
+			//String emailId =(String) session.getAttribute("userEmail");
+			/*if(truckid==null){
+				log.info("Email Id Null in Session ");
+				if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+					User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+					truckid = user.getUsername();
+					log.info("Email Id Got from  in used Context "+truckid);
+				}
+			}*/
+			
+				TruckDTO truckDTO = userMaintenance.geTruckId(truckid);
+				log.info("TruckID:"+truckDTO.getTruckid());
+				TruckRechargeDTO truckRechargeDTO = new TruckRechargeDTO();
+				truckRechargeDTO.setTruckid(truckid);
+				truckRechargeDTO.setAmount(amount);
+				
+				
+				/*RechargeDTO rechargeDTO=new RechargeDTO();
+				rechargeDTO.setAmount(amount-(amount*2/100));*/
+				
+				truckRechargeDTO.setStatus(TransactionStatus.Progress.getStatus());
+			//	long transactionId= transactionMaintenance.rechargeWallet(rechargeDTO);
+				
+				long transactionId= transactionMaintenance.truckRechargeWallet(truckRechargeDTO);
+				ReportFilter reportFilter=new ReportFilter();
+				transactionMaintenance.getUsersWallet(reportFilter);
+				
+				
+				log.info("Transaction Id :"+transactionId);
+				
+	}
+	
+	
+	
 	
 	
 	@RequestMapping(value = "/walletData",

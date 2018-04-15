@@ -48,4 +48,5 @@ public interface IUserMaintenance {
 	List<TruckDTO> getTruckList() throws ObjectNotSupportedException;
 	List<TruckDTO> getTruckDetails() throws ObjectNotSupportedException;
 	long getTruckCount() throws ObjectNotSupportedException;
+	TruckDTO geTruckId(long truckid) throws ObjectNotSupportedException;
 }

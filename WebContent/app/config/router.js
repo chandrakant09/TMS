@@ -79,11 +79,11 @@ tnwApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
 				templateUrl : "template/addtruck.html"
 				}
 			}
-	}).state('dashboardAdmin.trucklistdetail.buybalance', {
-		url : "/buybalance",
+	}).state('dashboardAdmin.trucklistdetail.buytruckbalance', {
+		url : "/buytruckbalance",
 		views: {
 			'admindashBoard@dashboardAdmin':{
-				templateUrl : "template/buybalance.html"
+				templateUrl : "template/buytruckbalance.html"
 				}
 			}
 	}).state('dashboardAdmin.resetuserpassword', {

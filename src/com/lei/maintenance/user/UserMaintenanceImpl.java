@@ -232,4 +232,16 @@ public class UserMaintenanceImpl implements IUserMaintenance{
 		return countTruck;
 
 		}
+	
+	
+	//Get Truck Id
+	@Override
+	public TruckDTO geTruckId(long truckid) throws ObjectNotSupportedException {
+		IUserDao dao = DaoManager.USER.getDao(IUserDao.class);
+		TruckDTO truckDTO = dao.getTruckId(truckid);
+		//UserDTO userDomain = dao.getUser(emailId);
+		return truckDTO;
+	}
+
+	
 }

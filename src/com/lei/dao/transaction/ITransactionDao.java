@@ -12,6 +12,7 @@ import com.lei.dto.wallet.PaidServiceDTO;
 import com.lei.dto.wallet.RechargeDTO;
 import com.lei.dto.wallet.TransactionDTO;
 import com.lei.dto.wallet.TransactionUpdateDTO;
+import com.lei.dto.wallet.TruckRechargeDTO;
 import com.lei.dto.wallet.WalletDTO;
 import com.lei.exception.common.ObjectNotSupportedException;
 import com.lei.exception.common.ProcessFailedException;
@@ -116,6 +117,9 @@ public interface ITransactionDao {
 	List<RechargeDTO> getRechargeList(ReportFilter filter)		throws ObjectNotSupportedException;
 
 	public List getwalletAmount(ReportFilter reportFilter) throws ObjectNotSupportedException;
+
+	long truckWalletRechargeProcess(TruckRechargeDTO truckRechargeDTO) throws ProcessFailedException, ObjectNotSupportedException;
+			
 	
 
 }

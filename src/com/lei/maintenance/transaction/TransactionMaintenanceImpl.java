@@ -17,6 +17,7 @@ import com.lei.dto.wallet.DashBoardReport;
 import com.lei.dto.wallet.DemandDraftDTO;
 import com.lei.dto.wallet.RechargeDTO;
 import com.lei.dto.wallet.TransactionUpdateDTO;
+import com.lei.dto.wallet.TruckRechargeDTO;
 import com.lei.dto.wallet.UserStaticsDTO;
 import com.lei.dto.wallet.WalletDTO;
 import com.lei.exception.common.ObjectNotSupportedException;
@@ -34,6 +35,12 @@ public class TransactionMaintenanceImpl implements ITransactionMaintenance  {
 	public long rechargeWallet(RechargeDTO rechargeDTO) throws ProcessFailedException, ObjectNotSupportedException {
 		ITransactionDao dao = DaoManager.TRABSACTIONDAO.getDao(ITransactionDao.class);
 		return dao.walletRechargeProcess(rechargeDTO);
+	}
+	
+	@Override
+	public long truckRechargeWallet(TruckRechargeDTO truckRechargeDTO) throws ProcessFailedException, ObjectNotSupportedException {
+		ITransactionDao dao = DaoManager.TRABSACTIONDAO.getDao(ITransactionDao.class);
+		return dao.truckWalletRechargeProcess(truckRechargeDTO);
 	}
 	
 	@Override

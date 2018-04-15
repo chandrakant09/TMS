@@ -429,6 +429,30 @@ public class UserDaoImpl implements IUserDao{
 			return count;
 			
 		}
+		
+		@Override
+		public TruckDTO getTruckId(long truckid) throws ObjectNotSupportedException {
+		//	UserDomain userDomain=getUserDomain(emailId);
+			TruckDomain truckDomain = getTruckDomain(truckid);
+			if(truckDomain!=null){
+				return CommonUtils.convertObject(truckDomain, TruckDTO.class);
+			}else{
+				return null;
+			}
+		}
+		
+		@Override
+		public TruckDomain getTruckDomain(long truckid) {
+			TruckDomain truckDomain = null;
+			hibernatePersistenceManager.beginTransaction();
+			Criteria truck = hibernatePersistenceManager.createCriteria(TruckDomain.class);
+			truck.add(Restrictions.eq("truckid", truckid));
+			List<TruckDomain> result = truck.list();
+			if(result != null && result.size()>0){
+				truckDomain = result.get(0);
+			}
+			return truckDomain;
+		}
 	
 	
 }

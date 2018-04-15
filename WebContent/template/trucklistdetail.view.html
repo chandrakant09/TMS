@@ -12,6 +12,7 @@
               <thead>
                 <tr class="headings">
                  	<th>S.No.</th>
+                 	<th>Truck Id</th>
 					<th>Truck No</th>
 					<th>Model No</th>
 					<th>Fuel Avg</th>
@@ -25,6 +26,7 @@
               <tbody>
                  <tr ng-repeat="obj in truckListDetail | filter : searchTruck"">
 					<td>{{$index+1}}</td>
+					<td>{{obj.truckid}}</td>
 					<td>{{obj.truckno}}</td>
 					<td>{{obj.modelno}}</td>
 					<td>{{obj.fuelavg}}</td>
@@ -32,7 +34,7 @@
 					<td>{{obj.drivername}}</td>
 					<td>{{obj.trucktokenno}}</td>
 					<td ng-controller="WalletCtrl">
-						<a ui-sref=".buybalance" class="btn btn-success"><i
+						<a ui-sref=".buytruckbalance" class="btn btn-success"><i
 							class=" fa fa-bolt"></i> Recharge</a>
 					</td>
 				</tr>

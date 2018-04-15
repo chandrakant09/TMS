@@ -3,6 +3,7 @@ package com.lei.dao.user;
 import java.util.List;
 
 import com.lei.domain.user.StatusDomain;
+import com.lei.domain.user.TruckDomain;
 import com.lei.domain.user.UserDomain;
 import com.lei.dto.master.ReportFilter;
 import com.lei.dto.user.TruckDTO;
@@ -52,5 +53,7 @@ public interface IUserDao {
 	List<TruckDTO> getTruckList() throws ObjectNotSupportedException;
 	List<TruckDTO> getTruckDetails() throws ObjectNotSupportedException;
 	long getTruckCount() throws ObjectNotSupportedException;
+	TruckDTO getTruckId(long truckid) throws ObjectNotSupportedException;
+	TruckDomain getTruckDomain(long truckid);
 	
 }

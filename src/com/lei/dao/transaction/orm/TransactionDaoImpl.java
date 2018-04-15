@@ -22,9 +22,13 @@ import com.lei.domain.transaction.EdisttDomain;
 import com.lei.domain.transaction.PaidServices;
 import com.lei.domain.transaction.TransactionDetailDomain;
 import com.lei.domain.transaction.TransactionUpdate;
+import com.lei.domain.transaction.TruckTransactionDetailDomain;
 import com.lei.domain.wallet.IndividualWalletDomain;
 import com.lei.domain.wallet.RechargeWalletDomain;
+import com.lei.domain.wallet.TruckIndividualWalletDomain;
+import com.lei.domain.wallet.TruckRechargeWalletDomain;
 import com.lei.dto.master.ReportFilter;
+import com.lei.dto.user.TruckDTO;
 import com.lei.dto.wallet.CashDTO;
 import com.lei.dto.wallet.ChequeDTO;
 import com.lei.dto.wallet.DemandDraftDTO;
@@ -33,6 +37,7 @@ import com.lei.dto.wallet.PaidServiceDTO;
 import com.lei.dto.wallet.RechargeDTO;
 import com.lei.dto.wallet.TransactionDTO;
 import com.lei.dto.wallet.TransactionUpdateDTO;
+import com.lei.dto.wallet.TruckRechargeDTO;
 import com.lei.dto.wallet.WalletDTO;
 import com.lei.exception.common.ObjectNotSupportedException;
 import com.lei.exception.common.ProcessFailedException;
@@ -260,6 +265,128 @@ public class TransactionDaoImpl implements ITransactionDao {
 		return transactionId;
 		
 	}
+	
+	
+	//Truck Wallet Recharge Process
+	
+	@Override
+	public long truckWalletRechargeProcess(TruckRechargeDTO truckRechargeDTO) throws ProcessFailedException,ObjectNotSupportedException{
+		TruckRechargeWalletDomain truckRechargeWalletDomain = CommonUtils.convertObject(truckRechargeDTO, TruckRechargeWalletDomain.class);
+		//RechargeWalletDomain rechargeWalletDomain = CommonUtils.convertObject(rechargeDTO, RechargeWalletDomain.class);
+		TruckIndividualWalletDomain truckIndividualWalletDomain = null;
+		//IndividualWalletDomain individualWalletDomain=null;
+		TruckTransactionDetailDomain truckTransactionDetailDomain = null;
+		//TransactionDetailDomain transactionDetailDomain=null;
+		long trucktransactionId=0;
+		try{
+			hibernatePersistenceManager.beginTransaction();
+			//IndividualWalletDomain=hibernatePersistenceManager.getPersistentObject(IndividualWalletDomain.class,rechargeWalletDomain.getUserId());
+			
+			if(truckRechargeDTO.getStatus().equals(TransactionStatus.Success.getStatus())){
+				Criteria walletList = hibernatePersistenceManager.createCriteria(TruckIndividualWalletDomain.class);
+				walletList.add(Restrictions.eq("userId", truckRechargeWalletDomain.getTruckid()));
+				List<TruckIndividualWalletDomain> results = walletList.list();
+				if(results != null && results.size()>0){
+					truckIndividualWalletDomain = results.get(0);
+				}
+				
+			
+			/*if(rechargeDTO.getStatus().equals(TransactionStatus.Success.getStatus())){
+				Criteria walletList = hibernatePersistenceManager.createCriteria(IndividualWalletDomain.class);
+				walletList.add(Restrictions.eq("userId", rechargeWalletDomain.getUserId()));
+				List<IndividualWalletDomain> results = walletList.list();
+				if(results != null && results.size()>0){
+					individualWalletDomain = results.get(0);
+				}*/
+				truckRechargeWalletDomain.setLastbalence(truckIndividualWalletDomain.getBalance());
+				truckIndividualWalletDomain.setLastupdated(new Date());
+				truckIndividualWalletDomain.setBalance(truckIndividualWalletDomain.getBalance()+truckRechargeWalletDomain.getAmount());
+				
+				/*rechargeWalletDomain.setLastBalance(individualWalletDomain.getBalance());
+				individualWalletDomain.setLastupdated(new Date());
+				individualWalletDomain.setBalance(individualWalletDomain.getBalance()+rechargeWalletDomain.getAmount());*/
+				truckTransactionDetailDomain = new TruckTransactionDetailDomain();
+				truckTransactionDetailDomain.setTruckid(truckRechargeDTO.getTruckid());
+				truckTransactionDetailDomain.setAmount(truckRechargeDTO.getAmount());
+				truckTransactionDetailDomain.setCurrentbalence(truckIndividualWalletDomain.getBalance());
+				truckTransactionDetailDomain.setTransactionType(TransactionTypeEnum.CREDIT.getValue());
+				truckTransactionDetailDomain.setRemark(truckRechargeDTO.getStatus());
+				truckTransactionDetailDomain.setStatus(truckRechargeDTO.getStatus());
+				truckTransactionDetailDomain.setTransactionTime(new Date());
+				
+				
+				/*transactionDetailDomain=new TransactionDetailDomain();
+				transactionDetailDomain.setUserId(rechargeDTO.getUserId());
+				transactionDetailDomain.setAmount(rechargeDTO.getAmount());
+				transactionDetailDomain.setCurrentBalance(individualWalletDomain.getBalance());
+				transactionDetailDomain.setTransactionType(TransactionTypeEnum.CREDIT.getValue());
+				transactionDetailDomain.setRemark(rechargeDTO.getStatus());
+				transactionDetailDomain.setStatus(rechargeDTO.getStatus());
+				transactionDetailDomain.setTransactionTime(new Date());*/
+				
+				hibernatePersistenceManager.saveOrUpdate(truckIndividualWalletDomain);
+				TruckTransactionDetailDomain dom=(TruckTransactionDetailDomain) hibernatePersistenceManager.save(truckTransactionDetailDomain);
+				truckRechargeWalletDomain.setTrucktransactionid(dom.getTrucktransactionid());
+				trucktransactionId=dom.getTrucktransactionid();
+				truckRechargeWalletDomain.setRechargetime(new Date());
+				truckRechargeWalletDomain.setUpdated(new Date());
+				hibernatePersistenceManager.save(truckRechargeWalletDomain);
+				
+				
+				/*hibernatePersistenceManager.saveOrUpdate(individualWalletDomain);
+				TransactionDetailDomain dom=(TransactionDetailDomain) hibernatePersistenceManager.save(transactionDetailDomain);
+				rechargeWalletDomain.setTransactionId(dom.getTransactionId());
+				transactionId=dom.getTransactionId();
+				rechargeWalletDomain.setRechargeTime(new Date());
+				rechargeWalletDomain.setUpdated(new Date());
+				hibernatePersistenceManager.save(rechargeWalletDomain);*/
+				
+				
+			}else{
+				
+				truckTransactionDetailDomain = new TruckTransactionDetailDomain();
+				truckTransactionDetailDomain.setTruckid(truckRechargeDTO.getTruckid());
+				truckTransactionDetailDomain.setAmount(truckRechargeDTO.getAmount());
+				truckTransactionDetailDomain.setTransactionType(TransactionTypeEnum.CREDIT.getValue());
+				truckTransactionDetailDomain.setRemark(truckRechargeDTO.getStatus());
+				truckTransactionDetailDomain.setStatus(truckRechargeDTO.getStatus());
+				truckTransactionDetailDomain.setTransactionTime(new Date());
+				
+				TruckTransactionDetailDomain dom=(TruckTransactionDetailDomain)hibernatePersistenceManager.save(truckTransactionDetailDomain);
+				
+				truckRechargeWalletDomain.setTrucktransactionid(dom.getTrucktransactionid());
+				truckRechargeWalletDomain.setRechargetime(new Date());
+				truckRechargeWalletDomain.setUpdated(new Date());
+				
+				trucktransactionId=dom.getTrucktransactionid();
+				hibernatePersistenceManager.save(truckRechargeWalletDomain);
+				
+				/*transactionDetailDomain=new TransactionDetailDomain();
+				transactionDetailDomain.setUserId(rechargeDTO.getUserId());
+				transactionDetailDomain.setAmount(rechargeDTO.getAmount());
+				transactionDetailDomain.setTransactionType(TransactionTypeEnum.CREDIT.getValue());
+				transactionDetailDomain.setRemark(rechargeDTO.getStatus());
+				transactionDetailDomain.setStatus(rechargeDTO.getStatus());
+				transactionDetailDomain.setTransactionTime(new Date());
+				TransactionDetailDomain dom=(TransactionDetailDomain)hibernatePersistenceManager.save(transactionDetailDomain);
+				rechargeWalletDomain.setTransactionId(dom.getTransactionId());
+				rechargeWalletDomain.setRechargeTime(new Date());
+				rechargeWalletDomain.setUpdated(new Date());;
+				transactionId=dom.getTransactionId();
+				hibernatePersistenceManager.save(rechargeWalletDomain);*/
+				
+			}
+			hibernatePersistenceManager.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			hibernatePersistenceManager.rollback();
+			throw new ProcessFailedException("Unable to save the TruckRechargeWalletDomain wallet");
+		}
+		return trucktransactionId;
+		
+	}
+	
+	
 	
 	@Override
 	public long amountDeductionProcess(long userId, double amount)throws ProcessFailedException{

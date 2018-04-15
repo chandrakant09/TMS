@@ -1,14 +1,1 @@
-/Renderer.ucls
-/UtilityClasses.ucls
-/captchavalidation.properties
 /com
-/configuration.properties
-/daoabstraction.properties
-/emailTemplate.properties
-/exception.properties
-/hibernate.cfg.xml
-/htmlproperties
-/log4j.properties
-/messages_en_US.properties
-/searchFieldsMapping.properties
-/workflow.properties

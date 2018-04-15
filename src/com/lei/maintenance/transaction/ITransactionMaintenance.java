@@ -7,6 +7,7 @@ import com.lei.dto.wallet.DashBoardReport;
 import com.lei.dto.wallet.DemandDraftDTO;
 import com.lei.dto.wallet.RechargeDTO;
 import com.lei.dto.wallet.TransactionUpdateDTO;
+import com.lei.dto.wallet.TruckRechargeDTO;
 import com.lei.dto.wallet.WalletDTO;
 import com.lei.exception.common.ObjectNotSupportedException;
 import com.lei.exception.common.ProcessFailedException;
@@ -62,6 +63,9 @@ public interface ITransactionMaintenance {
 	DashBoardReport getDisttAmount(ReportFilter reportFilter) throws Exception;
 
 	DashBoardReport getPendingRechargeList(ReportFilter filter)	throws ObjectNotSupportedException;
+
+	long truckRechargeWallet(TruckRechargeDTO truckRechargeDTO) throws ProcessFailedException, ObjectNotSupportedException;
+			
 
 	
 	
